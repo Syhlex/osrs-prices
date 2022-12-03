@@ -52,7 +52,7 @@ const webConfig = {
   // options for resolving module requests
   resolve: {
     // directories where to look for modules, in order
-    modules: [path.resolve(__dirname), 'node_modules'],
+    modules: [path.resolve(__dirname), 'src', 'node_modules'],
     extensions: ['.tsx', '.ts', '.js'],
   },
   // configuration regarding modules
