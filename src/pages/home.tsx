@@ -1,4 +1,5 @@
 import React from 'react';
+import { Table } from 'components/Table';
 
 export const Home = () => {
   return (
@@ -37,7 +38,9 @@ export const Home = () => {
         </div>
         <div className="card">
           <div className="card-header">Items with highest daily volume</div>
-          <div className="card-body"></div>
+          <div className="card-body">
+            <Table />
+          </div>
         </div>
         <div className="card">
           <div className="card-header">Most expensive items</div>

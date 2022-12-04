@@ -10,7 +10,12 @@ const jsLoadingRules = {
 };
 
 const cssLoadingRules = {
-  test: /\.mod\.scss|\.css$/,
+  test: /\.css$/,
+  use: ['style-loader', 'css-loader'],
+};
+
+const sassLoadingRules = {
+  test: /\.mod\.scss$/,
   use: [
     'style-loader',
     {
@@ -60,6 +65,7 @@ const webConfig = {
     rules: [
       jsLoadingRules,
       cssLoadingRules,
+      sassLoadingRules,
       imageLoadingRules,
       fontLoadingRules,
     ],
