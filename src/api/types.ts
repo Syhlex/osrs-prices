@@ -1,19 +1,21 @@
 export type Timestep = '5m' | '1h' | '6h';
 
+export interface PriceInfo {
+  high: number;
+  highTime: number;
+  low: number;
+  lowTime: number;
+}
+
 export interface LatestPrices {
-  [id: number]: {
-    high: number;
-    highTime: number;
-    low: number;
-    lowTime: number;
-  };
+  [id: number]: PriceInfo;
 }
 
 export interface GetLatestPricesResponse {
   data: LatestPrices;
 }
 
-export type GetItemDetailsResponse = {
+export interface ItemDetails {
   examine: string;
   id: number;
   members: boolean;
@@ -23,7 +25,9 @@ export type GetItemDetailsResponse = {
   highalch: number;
   icon: string;
   name: string;
-}[];
+}
+
+export type GetItemDetailsResponse = ItemDetails[];
 
 export interface GetVolumesResponse {
   timestamp: number;

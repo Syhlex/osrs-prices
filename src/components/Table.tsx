@@ -1,25 +1,18 @@
-import React, { useState } from 'react';
-import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
+import React from 'react';
+import { AgGridReact, AgGridReactProps } from 'ag-grid-react';
+import cns from 'classnames';
 
 import 'ag-grid-community/dist/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'; // Optional theme CSS
 
-export const Table = () => {
-  const [rowData] = useState([
-    { make: 'Toyota', model: 'Celica', price: 35000 },
-    { make: 'Ford', model: 'Mondeo', price: 32000 },
-    { make: 'Porsche', model: 'Boxter', price: 72000 },
-  ]);
+export interface TableProps extends AgGridReactProps {
+  styleProps?: { container?: string };
+}
 
-  const [columnDefs] = useState([
-    { field: 'make' },
-    { field: 'model' },
-    { field: 'price' },
-  ]);
-
+export const Table = ({ styleProps, ...agGridReactProps }: TableProps) => {
   return (
-    <div className="ag-theme-alpine" style={{ height: 400, width: 700 }}>
-      <AgGridReact rowData={rowData} columnDefs={columnDefs}></AgGridReact>
+    <div className={cns(styleProps?.container, 'ag-theme-alpine')}>
+      <AgGridReact {...agGridReactProps}></AgGridReact>
     </div>
   );
 };

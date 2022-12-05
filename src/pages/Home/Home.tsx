@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'components/Table';
+import { HighestDailyVolumeTable } from './highestDailyVolumeTable';
 
 export const Home = () => {
   return (
@@ -39,7 +39,7 @@ export const Home = () => {
         <div className="card">
           <div className="card-header">Items with highest daily volume</div>
           <div className="card-body">
-            <Table />
+            <HighestDailyVolumeTable />
           </div>
         </div>
         <div className="card">
