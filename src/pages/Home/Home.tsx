@@ -1,5 +1,6 @@
 import React from 'react';
 import { HighestDailyVolumeTable } from './highestDailyVolumeTable';
+import { MostExpensiveTable } from './MostExpensiveTable';
 
 export const Home = () => {
   return (
@@ -44,7 +45,9 @@ export const Home = () => {
         </div>
         <div className="card">
           <div className="card-header">Most expensive items</div>
-          <div className="card-body"></div>
+          <div className="card-body">
+            <MostExpensiveTable />
+          </div>
         </div>
       </div>
     </main>
