@@ -7,7 +7,6 @@ export const App = () => {
     <ItemsProvider>
       <header></header>
       <Home />
-      <footer></footer>
     </ItemsProvider>
   );
 };
