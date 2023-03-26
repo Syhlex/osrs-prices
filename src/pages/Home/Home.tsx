@@ -1,10 +1,11 @@
 import React from 'react';
 import { HighestDailyVolumeTable } from './highestDailyVolumeTable';
 import { MostExpensiveTable } from './MostExpensiveTable';
+import styles from './Home.mod.scss';
 
 export const Home = () => {
   return (
-    <main>
+    <main className={styles.home}>
       <h3>Welcome to our real-time Grand Exchange pricing site.</h3>
       <p>
         {`Here, we leverage the power of our `}
