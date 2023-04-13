@@ -70,6 +70,10 @@ const webConfig = {
       fontLoadingRules,
     ],
   },
+  devServer: {
+    // falls back to index.html when route is not found, allowing client side router to handle URL change
+    historyApiFallback: true,
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'public/index.html',
