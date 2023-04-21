@@ -15,7 +15,7 @@ const cssLoadingRules = {
 };
 
 const sassLoadingRules = {
-  test: /\.mod\.scss$/,
+  test: /\.(mod|module)\.scss$/,
   use: [
     'style-loader',
     {
