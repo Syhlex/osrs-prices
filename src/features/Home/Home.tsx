@@ -1,5 +1,5 @@
 import React from 'react';
-import { HighestDailyVolumeTable } from './highestDailyVolumeTable';
+import { HighestDailyVolumeTable } from './HighestDailyVolumeTable';
 import { MostExpensiveTable } from './MostExpensiveTable';
 import styles from './Home.mod.scss';
 

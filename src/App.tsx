@@ -1,9 +1,9 @@
 import React from 'react';
-import { Home } from 'pages/Home';
-import { ItemsProvider } from 'context/Items/ItemsProvider';
-import styles from './App.mod.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AllItems } from 'pages/AllItems';
+import { ItemsProvider } from 'context/Items/ItemsProvider';
+import { Home } from 'features/Home';
+import { AllItems } from 'features/AllItems';
+import styles from './App.mod.scss';
 
 export const App = () => {
   return (
