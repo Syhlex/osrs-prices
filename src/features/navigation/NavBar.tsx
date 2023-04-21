@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logoImage from '../../assets/images/Grand_Exchange_logo.webp';
 import styles from './NavBar.mod.scss';
+import { Refresh } from './refresh/Refresh';
 
 export interface NavBarProps {}
 
@@ -20,7 +21,7 @@ export const NavBar = () => {
         <button>Favourites</button>
       </Link>
       <div className="more-options-dropdown" />
-      <div className="refresh" />
+      <Refresh />
     </nav>
   );
 };

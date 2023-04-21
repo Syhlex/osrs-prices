@@ -17,11 +17,17 @@ export interface ComputedValues {
   rowData: (Partial<ItemDetails> & Partial<PriceInfo> & { volume?: number })[];
 }
 
-export type ItemsContextValues = ApiValues & ComputedValues;
+export interface ItemsApi {
+  refreshData: () => Promise<void>;
+}
+
+export type ItemsContextValues = ApiValues &
+  ComputedValues & { api?: ItemsApi };
 
 export const ItemsContext = createContext<ItemsContextValues>({
   itemDetails: undefined,
   volumes: undefined,
   latestPrices: undefined,
   rowData: [],
+  api: undefined,
 });

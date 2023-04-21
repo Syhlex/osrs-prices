@@ -1,4 +1,10 @@
-import React, { ReactNode, useEffect, useMemo, useState } from 'react';
+import React, {
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { getItemDetails, getLatestPrices, getVolumes } from 'api';
 import { ApiValues, ItemsContext } from './ItemsContext';
 
@@ -13,19 +19,18 @@ export const ItemsProvider = ({ children }: ItemsProviderProps) => {
     latestPrices: undefined,
   });
 
+  const fetchData = useCallback(async () => {
+    const itemDetails = await getItemDetails();
+    const volumes = await getVolumes();
+    const latestPrices = await getLatestPrices();
+    setState(() => ({
+      itemDetails,
+      volumes,
+      latestPrices,
+    }));
+  }, []);
+
   useEffect(() => {
-    const fetchData = async () => {
-      const itemDetails = await getItemDetails();
-      const volumes = await getVolumes();
-      const latestPrices = await getLatestPrices();
-
-      setState(() => ({
-        itemDetails,
-        volumes,
-        latestPrices,
-      }));
-    };
-
     fetchData().catch((error) => {
       console.error(error);
     });
@@ -49,6 +54,9 @@ export const ItemsProvider = ({ children }: ItemsProviderProps) => {
         volumes: state.volumes,
         latestPrices: state.latestPrices,
         rowData,
+        api: {
+          refreshData: fetchData,
+        },
       }}
     >
       {children}
