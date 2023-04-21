@@ -4,13 +4,14 @@ import { ItemsProvider } from 'context/Items/ItemsProvider';
 import { Home } from 'features/Home';
 import { AllItems } from 'features/AllItems';
 import styles from './App.mod.scss';
+import { NavBar } from 'features/navigation/NavBar';
 
 export const App = () => {
   return (
     <BrowserRouter>
       <ItemsProvider>
         <div className={styles.app}>
-          <header></header>
+          <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/all-items" element={<AllItems />} />
