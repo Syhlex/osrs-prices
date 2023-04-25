@@ -1,4 +1,7 @@
-import { Autocomplete, AutocompleteOption } from 'components/Autocomplete';
+import {
+  Autocomplete,
+  AutocompleteOption,
+} from 'components/Autocomplete/Autocomplete';
 import { ItemsContext } from 'context/Items/ItemsContext';
 import React, { ChangeEvent, useContext, useState } from 'react';
 

@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import { Table } from 'components/Table';
+import { Table } from 'components/Table/Table';
 import { ColDef } from 'ag-grid-community';
 import { ItemsContext } from 'context/Items/ItemsContext';
 import styles from './HomeTables.mod.scss';
