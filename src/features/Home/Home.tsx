@@ -6,7 +6,9 @@ import styles from './Home.mod.scss';
 export const Home = () => {
   return (
     <main className={styles.home}>
-      <h3>Welcome to our real-time Grand Exchange pricing site.</h3>
+      <h3 className={styles.header}>
+        Welcome to our real-time Grand Exchange pricing site.
+      </h3>
       <p>
         {`Here, we leverage the power of our `}
         <a

@@ -2,3 +2,8 @@
   font-family: 'IBM Plex Sans';
   src: url('./fonts/IBMPlexSans-Regular.ttf');
 }
+
+@font-face {
+  font-family: 'PT Serif';
+  src: url('./fonts/PTSerif-Regular.ttf');
+}
