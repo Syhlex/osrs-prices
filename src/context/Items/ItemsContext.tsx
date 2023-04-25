@@ -14,7 +14,7 @@ export interface ApiValues {
 }
 
 export interface ComputedValues {
-  rowData: (Partial<ItemDetails> & Partial<PriceInfo> & { volume?: number })[];
+  rowData: (ItemDetails & Partial<PriceInfo> & { volume?: number })[];
 }
 
 export interface ItemsApi {

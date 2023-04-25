@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import logoImage from '../../assets/images/Grand_Exchange_logo.webp';
 import styles from './NavBar.mod.scss';
 import { Refresh } from './refresh/Refresh';
+import { ItemSearch } from './itemSearch/ItemSearch';
 
 export interface NavBarProps {}
 
@@ -13,7 +14,7 @@ export const NavBar = () => {
         <img src={logoImage} width={30} height={30} />
         Prices<span> from the OSRS Wiki</span>
       </Link>
-      <div className="autocomplete" />
+      <ItemSearch />
       <Link to="/all-items">
         <button>All Items</button>
       </Link>
