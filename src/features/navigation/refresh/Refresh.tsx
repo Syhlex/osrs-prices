@@ -1,11 +1,13 @@
 import { ItemsContext } from 'context/Items/ItemsContext';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 const AUTO_REFRESH_INTERVAL = 60;
 
 export const Refresh = () => {
   const itemsApi = useContext(ItemsContext).api;
+  const intervalId = useRef<number>();
   const [timeRemaining, setTimeRemaining] = useState(AUTO_REFRESH_INTERVAL);
+  const [autoRefreshEnabled, setAutoRefreshEnabled] = useState(true);
 
   const refreshData = () => {
     if (itemsApi) {
@@ -14,15 +16,23 @@ export const Refresh = () => {
     }
   };
 
-  useEffect(() => {
-    const intervalId = window.setInterval(() => {
-      setTimeRemaining((prevTime) => prevTime - 1);
-    }, 1000);
+  const toggleAutoRefresh = () => {
+    setAutoRefreshEnabled((prev) => !prev);
+  };
 
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
+  useEffect(() => {
+    if (autoRefreshEnabled) {
+      intervalId.current = window.setInterval(() => {
+        setTimeRemaining((prevTime) => prevTime - 1);
+      }, 1000);
+
+      return () => {
+        clearInterval(intervalId.current);
+        intervalId.current = undefined;
+        setTimeRemaining(AUTO_REFRESH_INTERVAL);
+      };
+    }
+  }, [autoRefreshEnabled]);
 
   useEffect(() => {
     if (timeRemaining === 0) {
@@ -32,9 +42,13 @@ export const Refresh = () => {
 
   return (
     <div>
-      <input type="checkbox" />
+      <input
+        type="checkbox"
+        checked={autoRefreshEnabled}
+        onChange={toggleAutoRefresh}
+      />
       Auto-refresh
-      {timeRemaining}
+      {autoRefreshEnabled && ` (${timeRemaining})`}
       <button onClick={refreshData}>Refresh</button>
     </div>
   );
