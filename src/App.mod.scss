@@ -1,14 +1,16 @@
+@import 'css/colors.scss';
+
 .app {
   font-family: 'IBM Plex Sans', sans-serif;
-  color: #ffffff;
-  background-color: #262a2e;
+  color: $white;
+  background-color: $grey-dark;
 
   a {
-    color: #e4daa2;
+    color: $gold;
     text-decoration: none;
 
     &:hover {
-      color: #e4cc79;
+      color: $gold-dark;
       text-decoration: underline;
     }
   }
