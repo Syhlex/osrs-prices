@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { HighestDailyVolumeTable } from './Tables/HighestDailyVolumeTable';
 import { MostExpensiveTable } from './Tables/MostExpensiveTable';
 import styles from './Home.mod.scss';
@@ -24,13 +25,16 @@ export const Home = () => {
       <Card title="Quick tips" classes={{ card: styles.quickTipsCard }}>
         <ul className={styles.quickTipsList}>
           <li>
-            You can favourite specific items, so that they appear on your
-            Favourites page. This allows you to have an easy track list of items
-            you care about the most.
+            {`You can favourite specific items, so that they appear on your `}
+            <Link to="/favourites">Favourites</Link>
+            {` page. This allows you to
+            have an easy track list of items you care about the most.`}
           </li>
           <li>
-            Tables can be sorted by clicking the column headers, or filtered by
-            clicking 'Apply Filters'. Try it out on our All Items page.
+            {`Tables can be sorted by clicking the column headers, or filtered by
+            clicking 'Apply Filters'. Try it out on our `}
+            <Link to="/all-items">All Items</Link>
+            {` page.`}
           </li>
           <li>
             {`To ensure you have the most fresh data, turn on 'Auto-refresh' on
