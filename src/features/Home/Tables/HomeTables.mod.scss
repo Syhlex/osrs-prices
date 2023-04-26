@@ -1,3 +1,37 @@
+@import 'css/colors.scss';
+
 .container {
   width: 100%;
+
+  :global {
+    .ag-root-wrapper {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 16px;
+      border-color: $grey-90;
+    }
+
+    .ag-header {
+      border-bottom-color: $grey-90;
+    }
+
+    .ag-header-container {
+      background-color: $grey-100;
+    }
+
+    .ag-header-cell {
+      border-color: $grey-90;
+    }
+
+    .ag-header-cell-label {
+      color: $white;
+      font-weight: 400;
+    }
+
+    .ag-row {
+      background-color: $grey-100;
+      color: $white;
+      font-size: 16px;
+      border-color: $grey-90;
+    }
+  }
 }

@@ -10,24 +10,30 @@ const columnDefs: ColDef[] = [
   },
   {
     field: 'members',
+    width: 80,
   },
   {
     field: 'buyLimit',
+    width: 80,
   },
   {
     field: 'buyPrice',
+    width: 100,
   },
   {
     field: 'sellPrice',
+    width: 100,
   },
   {
     field: 'margin',
+    width: 86,
     valueGetter: (params) => {
       return params.data.buyPrice - params.data.sellPrice;
     },
   },
   {
     field: 'dailyVolume',
+    width: 103,
   },
 ];
 
