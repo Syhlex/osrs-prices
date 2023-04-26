@@ -1,6 +1,6 @@
 import React from 'react';
-import { HighestDailyVolumeTable } from './HighestDailyVolumeTable';
-import { MostExpensiveTable } from './MostExpensiveTable';
+import { HighestDailyVolumeTable } from './Tables/HighestDailyVolumeTable';
+import { MostExpensiveTable } from './Tables/MostExpensiveTable';
 import styles from './Home.mod.scss';
 
 export const Home = () => {
