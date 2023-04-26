@@ -1,6 +1,7 @@
 declare namespace AppModScssNamespace {
   export interface IAppModScss {
     app: string;
+    mainContent: string;
   }
 }
 

@@ -12,11 +12,16 @@ export const App = () => {
       <ItemsProvider>
         <div className={styles.app}>
           <NavBar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/all-items" element={<AllItems />} />
-            <Route path="/favourites" element={<div>Under construction</div>} />
-          </Routes>
+          <main className={styles.mainContent}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/all-items" element={<AllItems />} />
+              <Route
+                path="/favourites"
+                element={<div>Under construction</div>}
+              />
+            </Routes>
+          </main>
         </div>
       </ItemsProvider>
     </BrowserRouter>
