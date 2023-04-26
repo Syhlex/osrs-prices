@@ -1,3 +1,15 @@
 .app {
   font-family: 'IBM Plex Sans', sans-serif;
+  color: #ffffff;
+  background-color: #262a2e;
+
+  a {
+    color: #e4daa2;
+    text-decoration: none;
+
+    &:hover {
+      color: #e4cc79;
+      text-decoration: underline;
+    }
+  }
 }

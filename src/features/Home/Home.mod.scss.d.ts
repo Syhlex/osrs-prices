@@ -1,7 +1,10 @@
 declare namespace HomeModScssNamespace {
   export interface IHomeModScss {
     header: string;
+    highestVolumeCard: string;
     home: string;
+    quickTipsCard: string;
+    quickTipsList: string;
   }
 }
 
