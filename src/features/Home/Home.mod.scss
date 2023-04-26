@@ -1,3 +1,5 @@
+@import 'css/colors.scss';
+
 .home {
   margin: 0 auto;
   padding: 2em 0;
@@ -18,6 +20,14 @@
 .quickTipsList {
   margin: 0;
   line-height: 1.5;
+}
+
+.favouriteText {
+  color: $green;
+}
+
+.highlightedText {
+  color: $orange;
 }
 
 .highestVolumeCard {

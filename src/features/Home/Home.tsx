@@ -25,21 +25,23 @@ export const Home = () => {
       <Card title="Quick tips" classes={{ card: styles.quickTipsCard }}>
         <ul className={styles.quickTipsList}>
           <li>
-            {`You can favourite specific items, so that they appear on your `}
-            <Link to="/favourites">Favourites</Link>
-            {` page. This allows you to
-            have an easy track list of items you care about the most.`}
+            You can <span className={styles.favouriteText}>favourite</span>{' '}
+            specific items, so that they appear on your{' '}
+            <Link to="/favourites">Favourites</Link> page. This allows you to
+            have an easy track list of items you care about the most.
           </li>
           <li>
-            {`Tables can be sorted by clicking the column headers, or filtered by
-            clicking 'Apply Filters'. Try it out on our `}
-            <Link to="/all-items">All Items</Link>
-            {` page.`}
+            Tables can be <span className={styles.highlightedText}>sorted</span>{' '}
+            by clicking the column headers, or{' '}
+            <span className={styles.highlightedText}>filtered</span> by clicking
+            'Apply Filters'. Try it out on our{' '}
+            <Link to="/all-items">All Items</Link> page.
           </li>
           <li>
-            {`To ensure you have the most fresh data, turn on 'Auto-refresh' on
-              the right side of the header (or under the hamburger menu on
-              smaller screens).`}
+            To ensure you have the most{' '}
+            <span className={styles.highlightedText}>fresh data</span>, turn on
+            'Auto-refresh' on the right side of the header {`(`}or under the
+            hamburger menu on smaller screens{`)`}.
           </li>
         </ul>
       </Card>
