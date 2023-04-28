@@ -1,3 +1,4 @@
+import { Button } from 'components/Button/Button';
 import { ItemsContext } from 'context/Items/ItemsContext';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 
@@ -49,7 +50,9 @@ export const Refresh = () => {
       />
       Auto-refresh
       {autoRefreshEnabled && ` (${timeRemaining})`}
-      <button onClick={refreshData}>Refresh</button>
+      <Button variant="nav" onClick={refreshData}>
+        Refresh
+      </Button>
     </div>
   );
 };

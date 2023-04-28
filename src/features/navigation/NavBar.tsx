@@ -4,6 +4,7 @@ import logoImage from '../../assets/images/Grand_Exchange_logo.webp';
 import styles from './NavBar.mod.scss';
 import { Refresh } from './refresh/Refresh';
 import { ItemSearch } from './itemSearch/ItemSearch';
+import { Button } from 'components/Button/Button';
 
 export interface NavBarProps {}
 
@@ -19,10 +20,10 @@ export const NavBar = () => {
       </Link>
       <ItemSearch />
       <Link to="/all-items">
-        <button>All Items</button>
+        <Button variant="nav">All Items</Button>
       </Link>
       <Link to="/favourites">
-        <button>Favourites</button>
+        <Button variant="nav">Favourites</Button>
       </Link>
       <div className="more-options-dropdown" />
       <Refresh />
