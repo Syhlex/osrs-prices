@@ -1,9 +1,10 @@
+import React, { ChangeEvent, useContext, useState } from 'react';
 import {
   Autocomplete,
   AutocompleteOption,
 } from 'components/Autocomplete/Autocomplete';
 import { ItemsContext } from 'context/Items/ItemsContext';
-import React, { ChangeEvent, useContext, useState } from 'react';
+import styles from './ItemSearch.mod.scss';
 
 const ITEM_IMAGE_URL = 'https://oldschool.runescape.wiki/images/';
 
@@ -42,6 +43,7 @@ export const ItemSearch = () => {
       placeholder="Search for an item..."
       value={inputValue}
       options={suggestions}
+      classes={{ autocomplete: styles.autocomplete }}
       onInputChange={handleInputChange}
       onSelect={handleSelect}
     />
