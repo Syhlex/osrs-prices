@@ -10,30 +10,24 @@ const columnDefs: ColDef[] = [
   },
   {
     field: 'members',
-    width: 80,
   },
   {
     field: 'buyLimit',
-    width: 80,
   },
   {
     field: 'buyPrice',
-    width: 100,
   },
   {
     field: 'sellPrice',
-    width: 100,
   },
   {
     field: 'margin',
-    width: 86,
     valueGetter: (params) => {
       return params.data.buyPrice - params.data.sellPrice;
     },
   },
   {
     field: 'dailyVolume',
-    width: 103,
   },
 ];
 
@@ -71,6 +65,11 @@ export const HighestDailyVolumeTable = () => {
       columnDefs={columnDefs}
       rowData={highestVolumeRowData}
       styleProps={{ container: styles.container }}
+      onModelUpdated={(e) => {
+        e.api.sizeColumnsToFit({
+          columnLimits: [{ key: 'item', minWidth: 280 }],
+        });
+      }}
     />
   );
 };

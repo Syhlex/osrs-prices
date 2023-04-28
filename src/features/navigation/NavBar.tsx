@@ -10,9 +10,12 @@ export interface NavBarProps {}
 export const NavBar = () => {
   return (
     <nav className={styles.navbar}>
-      <Link to="/">
-        <img src={logoImage} width={30} height={30} />
-        Prices<span> from the OSRS Wiki</span>
+      <Link to="/" className={styles.navbarLogo}>
+        <img src={logoImage} className={styles.navbarLogoImage} />
+        <span>
+          Prices{' '}
+          <span className={styles.navbarLogoSub}>from the OSRS Wiki</span>
+        </span>
       </Link>
       <ItemSearch />
       <Link to="/all-items">
