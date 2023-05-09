@@ -22,6 +22,7 @@
   position: absolute;
   width: 100%;
   background-color: $grey-90;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.75);
 }
 
 .autocompleteItem {
@@ -31,6 +32,10 @@
   background-color: $grey-100;
   display: flex;
   align-items: center;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .autocompleteItemImage {
