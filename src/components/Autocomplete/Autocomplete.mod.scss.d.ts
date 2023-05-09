@@ -2,6 +2,7 @@ declare namespace AutocompleteModScssNamespace {
   export interface IAutocompleteModScss {
     autocomplete: string;
     autocompleteItem: string;
+    autocompleteItemImage: string;
     autocompleteOptions: string;
     input: string;
   }

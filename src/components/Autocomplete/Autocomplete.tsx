@@ -35,7 +35,9 @@ export const Autocomplete = (props: AutocompleteProps) => (
             props.onSelect(option);
           }}
         >
-          <img src={option.image} alt={option.label} />
+          <span className={styles.autocompleteItemImage}>
+            <img src={option.image} alt={option.label} />
+          </span>
           {option.label}
         </li>
       ))}
