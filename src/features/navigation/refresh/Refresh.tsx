@@ -1,6 +1,7 @@
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Button } from 'components/Button/Button';
 import { ItemsContext } from 'context/Items/ItemsContext';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import styles from './Refresh.mod.scss';
 
 const AUTO_REFRESH_INTERVAL = 60;
 
@@ -43,13 +44,15 @@ export const Refresh = () => {
 
   return (
     <div>
-      <input
-        type="checkbox"
-        checked={autoRefreshEnabled}
-        onChange={toggleAutoRefresh}
-      />
-      Auto-refresh
-      {autoRefreshEnabled && ` (${timeRemaining})`}
+      <span className={styles.autoRefreshWrapper}>
+        <input
+          type="checkbox"
+          checked={autoRefreshEnabled}
+          onChange={toggleAutoRefresh}
+        />
+        Auto-refresh
+        {autoRefreshEnabled && ` (${timeRemaining})`}
+      </span>
       <Button variant="nav" onClick={refreshData}>
         Refresh
       </Button>
