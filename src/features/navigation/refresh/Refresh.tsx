@@ -46,6 +46,7 @@ export const Refresh = () => {
     <div>
       <span className={styles.autoRefreshWrapper}>
         <input
+          className={styles.autoRefreshCheckbox}
           type="checkbox"
           checked={autoRefreshEnabled}
           onChange={toggleAutoRefresh}
