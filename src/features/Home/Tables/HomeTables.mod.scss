@@ -1,5 +1,13 @@
 @import 'css/colors.scss';
 
+.margin-positive {
+  color: $green;
+}
+
+.margin-negative {
+  color: $red;
+}
+
 .container {
   width: 100%;
 
