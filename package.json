@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "clear": "rm -rf build",
+    "setup-git-hooks": "./src/scripts/setup-git-hooks.sh",
     "start": "webpack serve --open --config webpack.dev.js",
     "test": "jest"
   },
