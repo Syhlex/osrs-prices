@@ -1,26 +1,23 @@
-# react-app-template
+# OSRS Prices
 
-Starter template for React supporting TypeScript, modular Sass, and Jest. Bundled with webpack.
+A high-fidelity replica of https://prices.runescape.wiki/osrs/ built with React.
 
-## Setup
+## Getting started
 
-1. Create a repository using this template.
-2. Install dependencies.
-   ```bash
-   yarn install
-   ```
+Install dependencies.
 
-## Scripts
+```
+yarn install
+```
 
-- Start the development server.
-  ```
-  yarn start
-  ```
-- Generate a production build.
-  ```
-  yarn build
-  ```
-- Run tests.
-  ```
-  yarn test
-  ```
+Setup Git hooks.
+
+```
+yarn setup-git-hooks
+```
+
+Start the dev server.
+
+```
+yarn start
+```
