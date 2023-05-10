@@ -3,7 +3,6 @@ import { Table } from 'components/Table/Table';
 import { ItemsContext } from 'context/Items/ItemsContext';
 import styles from './HomeTables.mod.scss';
 import { ColDef } from 'ag-grid-community';
-import {MarginRenderer} from './MarginRenderer';
 
 const columnDefs: ColDef[] = [
   {
@@ -26,7 +25,9 @@ const columnDefs: ColDef[] = [
     valueGetter: (params) => {
       return params.data.buyPrice - params.data.sellPrice;
     },
-    cellRendererFramework: MarginRenderer
+    cellClass: params => {
+      return params.value >= 0 ? styles['margin-positive'] : styles['margin-negative'];
+    },
   },
   {
     field: 'dailyVolume',
