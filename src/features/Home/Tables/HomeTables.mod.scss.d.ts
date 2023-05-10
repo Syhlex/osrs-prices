@@ -1,6 +1,8 @@
 declare namespace HomeTablesModScssNamespace {
   export interface IHomeTablesModScss {
     container: string;
+    'margin-negative': string;
+    'margin-positive': string;
   }
 }
 

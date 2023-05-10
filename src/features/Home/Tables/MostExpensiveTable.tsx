@@ -30,6 +30,11 @@ const columnDefs: ColDef[] = [
     valueGetter: (params) => {
       return params.data.buyPrice - params.data.sellPrice;
     },
+    cellClass: (params) => {
+      return params.value >= 0
+        ? styles['margin-positive']
+        : styles['margin-negative'];
+    },
   },
   {
     field: 'dailyVolume',
