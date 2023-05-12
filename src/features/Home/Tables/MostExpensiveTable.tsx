@@ -3,6 +3,7 @@ import { Table } from 'components/Table/Table';
 import { ColDef } from 'ag-grid-community';
 import { ItemsContext } from 'context/Items/ItemsContext';
 import styles from './HomeTables.mod.scss';
+import { addCommas, getMarginColors } from './TableUtilFunctions';
 
 const columnDefs: ColDef[] = [
   {
@@ -19,10 +20,12 @@ const columnDefs: ColDef[] = [
   {
     field: 'buyPrice',
     width: 100,
+    valueFormatter: addCommas,
   },
   {
     field: 'sellPrice',
     width: 100,
+    valueFormatter: addCommas,
   },
   {
     field: 'margin',
@@ -30,11 +33,8 @@ const columnDefs: ColDef[] = [
     valueGetter: (params) => {
       return params.data.buyPrice - params.data.sellPrice;
     },
-    cellClass: (params) => {
-      return params.value >= 0
-        ? styles['margin-positive']
-        : styles['margin-negative'];
-    },
+    cellClass: getMarginColors,
+    valueFormatter: addCommas,
   },
   {
     field: 'dailyVolume',
