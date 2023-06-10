@@ -17,12 +17,13 @@ export interface ItemsApi {
   refreshData: () => Promise<void>;
 }
 
-export type ItemRow = ItemDetails & Partial<PriceInfo> & { volume?: number };
+export type Item = ItemDetails & Partial<PriceInfo> & { volume?: number };
 
 export interface ItemsContextValues {
   raw: ApiValues;
   api: ItemsApi | undefined;
-  itemRows: ItemRow[];
+  itemRows: Item[];
+  itemsMap: { [id: string]: Item };
 }
 
 export const ItemsContext = createContext<ItemsContextValues>({
@@ -33,4 +34,5 @@ export const ItemsContext = createContext<ItemsContextValues>({
   },
   api: undefined,
   itemRows: [],
+  itemsMap: {},
 });

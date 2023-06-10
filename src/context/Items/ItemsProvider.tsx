@@ -47,6 +47,10 @@ export const ItemsProvider = ({ children }: ItemsProviderProps) => {
     });
   }, [rawData]);
 
+  const itemsMap = itemRows.reduce((acc, item) => {
+    return { ...acc, [item.id]: item };
+  }, {});
+
   return (
     <ItemsContext.Provider
       value={{
@@ -59,6 +63,7 @@ export const ItemsProvider = ({ children }: ItemsProviderProps) => {
           refreshData: fetchData,
         },
         itemRows,
+        itemsMap,
       }}
     >
       {children}
