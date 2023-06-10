@@ -1,8 +1,9 @@
 declare namespace HomeTablesModScssNamespace {
   export interface IHomeTablesModScss {
+    buyLimitUnknown: string;
     container: string;
-    'margin-negative': string;
-    'margin-positive': string;
+    marginNegative: string;
+    marginPositive: string;
   }
 }
 

@@ -3,7 +3,13 @@ import { Table } from 'components/Table/Table';
 import { ColDef } from 'ag-grid-community';
 import { ItemsContext } from 'context/Items/ItemsContext';
 import styles from './HomeTables.mod.scss';
-import { addCommas, getMarginColors } from './TableUtilFunctions';
+import {
+  addCommas,
+  addUnknown,
+  getBuyLimitCellClass,
+  getChainedValueFormatter,
+  getMarginCellClass,
+} from './TableUtilFunctions';
 
 const columnDefs: ColDef[] = [
   {
@@ -16,6 +22,8 @@ const columnDefs: ColDef[] = [
   {
     field: 'buyLimit',
     width: 80,
+    valueFormatter: getChainedValueFormatter([addCommas, addUnknown]),
+    cellClass: getBuyLimitCellClass,
   },
   {
     field: 'buyPrice',
@@ -33,7 +41,7 @@ const columnDefs: ColDef[] = [
     valueGetter: (params) => {
       return params.data.buyPrice - params.data.sellPrice;
     },
-    cellClass: getMarginColors,
+    cellClass: getMarginCellClass,
     valueFormatter: addCommas,
   },
   {

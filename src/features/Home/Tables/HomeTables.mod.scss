@@ -1,11 +1,15 @@
 @import 'css/colors.scss';
 
-.margin-positive {
+.marginPositive {
   color: $green;
 }
 
-.margin-negative {
+.marginNegative {
   color: $red;
+}
+
+.buyLimitUnknown {
+  color: $grey-30;
 }
 
 .container {

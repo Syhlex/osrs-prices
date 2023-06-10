@@ -20,7 +20,7 @@ export interface ItemDetails {
   id: number;
   members: boolean;
   lowalch: number;
-  limit: number;
+  limit?: number;
   value: number;
   highalch: number;
   icon: string;
