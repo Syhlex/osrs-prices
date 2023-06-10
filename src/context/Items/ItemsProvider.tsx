@@ -13,7 +13,7 @@ export interface ItemsProviderProps {
 }
 
 export const ItemsProvider = ({ children }: ItemsProviderProps) => {
-  const [state, setState] = useState<ApiValues>({
+  const [rawData, setRawData] = useState<ApiValues>({
     itemDetails: undefined,
     volumes: undefined,
     latestPrices: undefined,
@@ -23,7 +23,7 @@ export const ItemsProvider = ({ children }: ItemsProviderProps) => {
     const itemDetails = await getItemDetails();
     const volumes = await getVolumes();
     const latestPrices = await getLatestPrices();
-    setState(() => ({
+    setRawData(() => ({
       itemDetails,
       volumes,
       latestPrices,
@@ -36,27 +36,29 @@ export const ItemsProvider = ({ children }: ItemsProviderProps) => {
     });
   }, []);
 
-  const rowData = useMemo(() => {
-    if (!state.itemDetails) {
+  const itemRows = useMemo(() => {
+    if (!rawData.itemDetails) {
       return [];
     }
-    return state.itemDetails.map((item) => {
-      const prices = state.latestPrices?.data[item.id];
-      const volume = state.volumes?.data[item.id];
+    return rawData.itemDetails.map((item) => {
+      const prices = rawData.latestPrices?.data[item.id];
+      const volume = rawData.volumes?.data[item.id];
       return { ...item, ...prices, volume };
     });
-  }, [state]);
+  }, [rawData]);
 
   return (
     <ItemsContext.Provider
       value={{
-        itemDetails: state.itemDetails,
-        volumes: state.volumes,
-        latestPrices: state.latestPrices,
-        rowData,
+        raw: {
+          itemDetails: rawData.itemDetails,
+          volumes: rawData.volumes,
+          latestPrices: rawData.latestPrices,
+        },
         api: {
           refreshData: fetchData,
         },
+        itemRows,
       }}
     >
       {children}

@@ -51,10 +51,10 @@ const columnDefs: ColDef[] = [
 ];
 
 export const MostExpensiveTable = () => {
-  const { rowData } = useContext(ItemsContext);
+  const { itemRows } = useContext(ItemsContext);
 
   const mostExpensiveRowData = useMemo(() => {
-    return [...rowData]
+    return [...itemRows]
       .sort((a, b) => {
         if (a.high === b.high) {
           return 0;
@@ -75,7 +75,7 @@ export const MostExpensiveTable = () => {
         sellPrice: data.low,
         dailyVolume: data.volume,
       }));
-  }, [rowData]);
+  }, [itemRows]);
 
   return (
     <Table

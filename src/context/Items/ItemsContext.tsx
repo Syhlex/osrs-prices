@@ -13,21 +13,24 @@ export interface ApiValues {
   latestPrices?: GetLatestPricesResponse;
 }
 
-export interface ComputedValues {
-  rowData: (ItemDetails & Partial<PriceInfo> & { volume?: number })[];
-}
-
 export interface ItemsApi {
   refreshData: () => Promise<void>;
 }
 
-export type ItemsContextValues = ApiValues &
-  ComputedValues & { api?: ItemsApi };
+export type ItemRow = ItemDetails & Partial<PriceInfo> & { volume?: number };
+
+export interface ItemsContextValues {
+  raw: ApiValues;
+  api: ItemsApi | undefined;
+  itemRows: ItemRow[];
+}
 
 export const ItemsContext = createContext<ItemsContextValues>({
-  itemDetails: undefined,
-  volumes: undefined,
-  latestPrices: undefined,
-  rowData: [],
+  raw: {
+    itemDetails: undefined,
+    volumes: undefined,
+    latestPrices: undefined,
+  },
   api: undefined,
+  itemRows: [],
 });

@@ -10,9 +10,9 @@ const ITEM_IMAGE_URL = 'https://oldschool.runescape.wiki/images/';
 
 export const ItemSearch = () => {
   const [inputValue, setInputValue] = useState('');
-  const { rowData } = useContext(ItemsContext);
+  const { itemRows } = useContext(ItemsContext);
 
-  const allOptions = rowData.map((item) => ({
+  const allOptions = itemRows.map((item) => ({
     label: item.name,
     value: item.id.toString(),
     // Unescapes characters then replaces ' ' with '_'
