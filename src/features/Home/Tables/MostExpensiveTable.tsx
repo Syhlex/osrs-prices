@@ -1,8 +1,7 @@
-import React, { useContext, useMemo } from 'react';
-import { Table } from 'components/Table/Table';
+import React, { useMemo } from 'react';
 import { ColDef } from 'ag-grid-community';
-import { ItemsContext } from 'context/Items/ItemsContext';
-import styles from './HomeTables.mod.scss';
+import { Table } from 'components/Table/Table';
+import { useItems } from 'hooks/useItems';
 import {
   addCommas,
   addUnknown,
@@ -10,6 +9,7 @@ import {
   getChainedValueFormatter,
   getMarginCellClass,
 } from './TableUtilFunctions';
+import styles from './HomeTables.mod.scss';
 
 const columnDefs: ColDef[] = [
   {
@@ -51,7 +51,7 @@ const columnDefs: ColDef[] = [
 ];
 
 export const MostExpensiveTable = () => {
-  const { itemRows } = useContext(ItemsContext);
+  const { itemRows } = useItems();
 
   const mostExpensiveRowData = useMemo(() => {
     return [...itemRows]

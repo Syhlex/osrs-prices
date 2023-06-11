@@ -1,16 +1,18 @@
-import React, { ChangeEvent, useContext, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useItems } from 'hooks/useItems';
 import {
   Autocomplete,
   AutocompleteOption,
 } from 'components/Autocomplete/Autocomplete';
-import { ItemsContext } from 'context/Items/ItemsContext';
 import styles from './ItemSearch.mod.scss';
 
 const ITEM_IMAGE_URL = 'https://oldschool.runescape.wiki/images/';
 
 export const ItemSearch = () => {
   const [inputValue, setInputValue] = useState('');
-  const { itemRows } = useContext(ItemsContext);
+  const { itemRows } = useItems();
+  const navigate = useNavigate();
 
   const allOptions = itemRows.map((item) => ({
     label: item.name,
@@ -35,6 +37,7 @@ export const ItemSearch = () => {
   };
 
   const handleSelect = (option: AutocompleteOption) => {
+    navigate(`/item/${option.value}`);
     console.log('Selected option: ', option);
   };
 

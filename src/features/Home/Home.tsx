@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Card } from 'components/Card/Card';
+import { useTitle } from 'hooks/useTitle';
 import { HighestDailyVolumeTable } from './Tables/HighestDailyVolumeTable';
 import { MostExpensiveTable } from './Tables/MostExpensiveTable';
 import styles from './Home.mod.scss';
-import { Card } from 'components/Card/Card';
 
 export const Home = () => {
+  useTitle('Home');
+
   return (
     <main className={styles.home}>
       <h3 className={styles.header}>

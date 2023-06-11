@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button } from 'components/Button/Button';
-import { ItemsContext } from 'context/Items/ItemsContext';
+import { useItems } from 'hooks/useItems';
 import styles from './Refresh.mod.scss';
 
 const AUTO_REFRESH_INTERVAL = 60;
 
 export const Refresh = () => {
-  const itemsApi = useContext(ItemsContext).api;
+  const { api: itemsApi } = useItems();
   const intervalId = useRef<number>();
   const [timeRemaining, setTimeRemaining] = useState(AUTO_REFRESH_INTERVAL);
   const [autoRefreshEnabled, setAutoRefreshEnabled] = useState(true);

@@ -1,9 +1,9 @@
-import React, { useContext, useMemo } from 'react';
-import { Table } from 'components/Table/Table';
-import { ItemsContext } from 'context/Items/ItemsContext';
-import styles from './HomeTables.mod.scss';
+import React, { useMemo } from 'react';
 import { ColDef } from 'ag-grid-community';
+import { Table } from 'components/Table/Table';
+import { useItems } from 'hooks/useItems';
 import { addCommas, getMarginCellClass } from './TableUtilFunctions';
+import styles from './HomeTables.mod.scss';
 
 const columnDefs: ColDef[] = [
   {
@@ -36,7 +36,7 @@ const columnDefs: ColDef[] = [
 ];
 
 export const HighestDailyVolumeTable = () => {
-  const { itemRows } = useContext(ItemsContext);
+  const { itemRows } = useItems();
 
   const highestVolumeRowData = useMemo(() => {
     return [...itemRows]
