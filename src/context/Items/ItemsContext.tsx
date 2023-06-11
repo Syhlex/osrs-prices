@@ -19,11 +19,13 @@ export interface ItemsApi {
 
 export type Item = ItemDetails & Partial<PriceInfo> & { volume?: number };
 
+export type ItemsMap = { [id: string]: Item };
+
 export interface ItemsContextValues {
   raw: ApiValues;
   api: ItemsApi | undefined;
   itemRows: Item[];
-  itemsMap: { [id: string]: Item };
+  itemsMap: ItemsMap;
 }
 
 export const ItemsContext = createContext<ItemsContextValues>({

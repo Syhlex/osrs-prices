@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { getItemDetails, getLatestPrices, getVolumes } from 'api';
-import { ApiValues, ItemsContext } from './ItemsContext';
+import { ApiValues, Item, ItemsContext, ItemsMap } from './ItemsContext';
 
 export interface ItemsProviderProps {
   children?: ReactNode;
@@ -36,7 +36,7 @@ export const ItemsProvider = ({ children }: ItemsProviderProps) => {
     });
   }, []);
 
-  const itemRows = useMemo(() => {
+  const itemRows: Item[] = useMemo(() => {
     if (!rawData.itemDetails) {
       return [];
     }
@@ -47,9 +47,14 @@ export const ItemsProvider = ({ children }: ItemsProviderProps) => {
     });
   }, [rawData]);
 
-  const itemsMap = itemRows.reduce((acc, item) => {
-    return { ...acc, [item.id]: item };
-  }, {});
+  const itemsMap = useMemo(
+    () =>
+      itemRows.reduce((acc: ItemsMap, item) => {
+        acc[item.id] = item;
+        return acc;
+      }, {}),
+    [itemRows],
+  );
 
   return (
     <ItemsContext.Provider
