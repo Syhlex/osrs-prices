@@ -37,8 +37,11 @@ export const ItemSearch = () => {
   };
 
   const handleSelect = (option: AutocompleteOption) => {
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+    setInputValue('');
     navigate(`/item/${option.value}`);
-    console.log('Selected option: ', option);
   };
 
   return (

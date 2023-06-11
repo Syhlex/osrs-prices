@@ -18,10 +18,13 @@ export interface AutocompleteProps {
 }
 
 export const Autocomplete = (props: AutocompleteProps) => {
-  const [focus, setFocus] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
+
   return (
     <div
       className={classnames(styles.autocomplete, props.classes?.autocomplete)}
+      onFocus={() => setShowOptions(true)}
+      onBlur={() => setShowOptions(false)}
     >
       <input
         type="text"
@@ -29,17 +32,19 @@ export const Autocomplete = (props: AutocompleteProps) => {
         placeholder={props.placeholder}
         className={classnames(styles.input, props.classes?.input)}
         onChange={props.onInputChange}
-        onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
       />
-      {focus && (
+      {showOptions && (
         <ul className={styles.autocompleteOptions}>
           {props.options.map((option) => (
             <li
               className={styles.autocompleteItem}
               key={option.value}
+              onMouseDown={(e) => {
+                e.preventDefault(); // prevent blur event which prevents onClick from firing
+              }}
               onClick={() => {
                 props.onSelect(option);
+                setShowOptions(false);
               }}
             >
               <span className={styles.autocompleteItemImage}>
