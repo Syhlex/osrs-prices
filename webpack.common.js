@@ -53,6 +53,7 @@ const webConfig = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build'),
+    publicPath: '/',
   },
   // options for resolving module requests
   resolve: {
