@@ -12,7 +12,7 @@ export interface AutocompleteProps {
   value: string;
   options: AutocompleteOption[];
   placeholder?: string;
-  classes?: Partial<{ autocomplete: string; input: string }>;
+  classes?: { autocomplete?: string; input?: string };
   onInputChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onSelect: (option: AutocompleteOption) => void;
 }

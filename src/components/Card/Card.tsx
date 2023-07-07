@@ -5,7 +5,7 @@ import styles from './Card.mod.scss';
 export interface CardProps {
   title: string;
   children: ReactNode;
-  classes?: { card: string };
+  classes?: { card?: string };
 }
 
 export const Card = (props: CardProps) => {
