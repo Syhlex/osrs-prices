@@ -5,6 +5,7 @@ import { useTitle } from 'hooks/useTitle';
 import { HighestDailyVolumeTable } from './Tables/HighestDailyVolumeTable';
 import { MostExpensiveTable } from './Tables/MostExpensiveTable';
 import styles from './Home.mod.scss';
+import { Icon, IconName } from 'components/Icon/Icon';
 
 export const Home = () => {
   useTitle('Home');
@@ -28,10 +29,14 @@ export const Home = () => {
       <Card title="Quick tips" classes={{ card: styles.quickTipsCard }}>
         <ul className={styles.quickTipsList}>
           <li>
-            You can <span className={styles.favouriteText}>favourite</span>{' '}
+            You can{' '}
+            <span className={styles.favouriteText}>
+              <Icon name={IconName.Heart} className={styles.heartIcon} />{' '}
+              favourite
+            </span>{' '}
             specific items, so that they appear on your{' '}
             <Link to="/favourites">Favourites</Link> page. This allows you to
-            have an easy track list of items you care about the most.
+            have an easy to track list of the items you care about the most.
           </li>
           <li>
             Tables can be <span className={styles.highlightedText}>sorted</span>{' '}
