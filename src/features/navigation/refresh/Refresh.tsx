@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from 'components/Button/Button';
+import { Icon, IconName } from 'components/Icon/Icon';
 import { useItems } from 'hooks/useItems';
 import styles from './Refresh.mod.scss';
 
@@ -55,7 +56,7 @@ export const Refresh = () => {
         {autoRefreshEnabled && ` (${timeRemaining})`}
       </span>
       <Button variant="nav" onClick={refreshData}>
-        Refresh
+        <Icon name={IconName.Refresh} className={styles.refreshIcon} />
       </Button>
     </div>
   );

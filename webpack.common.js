@@ -38,8 +38,14 @@ const sassLoadingRules = {
 };
 
 const imageLoadingRules = {
-  test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+  test: /\.(png|jpg|jpeg|gif|webp)$/i,
   type: 'asset/resource',
+};
+
+// Transform SVGs into React components
+const svgLoadingRules = {
+  test: /\.svg$/i,
+  use: ['@svgr/webpack'],
 };
 
 const fontLoadingRules = {
@@ -68,6 +74,7 @@ const webConfig = {
       cssLoadingRules,
       sassLoadingRules,
       imageLoadingRules,
+      svgLoadingRules,
       fontLoadingRules,
     ],
   },
