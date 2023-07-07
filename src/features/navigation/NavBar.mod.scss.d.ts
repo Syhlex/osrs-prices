@@ -1,5 +1,6 @@
 declare namespace NavBarModScssNamespace {
   export interface INavBarModScss {
+    favouritesButton: string;
     navbar: string;
     navbarLogo: string;
     navbarLogoImage: string;

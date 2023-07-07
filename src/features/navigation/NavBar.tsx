@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logoImage from '../../assets/images/Grand_Exchange_logo.webp';
-import styles from './NavBar.mod.scss';
+import logoImage from 'assets/images/Grand_Exchange_logo.webp';
+import { Button } from 'components/Button/Button';
+import { Icon, IconName } from 'components/Icon/Icon';
 import { Refresh } from './refresh/Refresh';
 import { ItemSearch } from './itemSearch/ItemSearch';
-import { Button } from 'components/Button/Button';
+import styles from './NavBar.mod.scss';
 
 export interface NavBarProps {}
 
@@ -23,7 +24,10 @@ export const NavBar = () => {
         <Button variant="nav">All Items</Button>
       </Link>
       <Link to="/favourites">
-        <Button variant="nav">Favourites</Button>
+        <Button variant="nav" classes={{ button: styles.favouritesButton }}>
+          <Icon name={IconName.Heart} />
+          Favourites
+        </Button>
       </Link>
       <div className="more-options-dropdown" />
       <Refresh />

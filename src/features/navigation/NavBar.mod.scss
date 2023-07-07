@@ -36,3 +36,9 @@ a.navbarLogo {
   font-size: 12px;
   color: $grey-30;
 }
+
+.favouritesButton {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
