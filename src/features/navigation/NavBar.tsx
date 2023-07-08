@@ -21,10 +21,13 @@ export const NavBar = () => {
       </Link>
       <ItemSearch />
       <Link to="/all-items">
-        <Button variant="nav">All Items</Button>
+        <Button variant="nav" classes={{ button: styles.iconButton }}>
+          <Icon name={IconName.List} />
+          All Items
+        </Button>
       </Link>
       <Link to="/favourites">
-        <Button variant="nav" classes={{ button: styles.favouritesButton }}>
+        <Button variant="nav" classes={{ button: styles.iconButton }}>
           <Icon name={IconName.Heart} />
           Favourites
         </Button>
