@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { ColDef } from 'ag-grid-community';
 import { Table } from 'components/Table/Table';
 import { useItems } from 'hooks/useItems';
+import { IsMembersItemRenderer } from './cellRenderers/IsMembersItem';
 import {
   addCommas,
   addUnknown,
@@ -18,6 +19,7 @@ const columnDefs: ColDef[] = [
   {
     field: 'members',
     width: 80,
+    cellRenderer: IsMembersItemRenderer,
   },
   {
     field: 'buyLimit',
