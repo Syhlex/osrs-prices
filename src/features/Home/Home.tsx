@@ -16,15 +16,15 @@ export const Home = () => {
         Welcome to our real-time Grand Exchange pricing site.
       </h3>
       <p>
-        {`Here, we leverage the power of our `}
+        Here, we leverage the power of our{' '}
         <a
           href="https://oldschool.runescape.wiki/w/RuneScape:Real-time_Prices"
           rel="noopener noreferrer"
         >
           real-time price API
-        </a>
-        {` to provide you with easy to view pricing information about items in Old
-        School Runescape.`}
+        </a>{' '}
+        to provide you with easy to view pricing information about items in{' '}
+        <span className={styles.italicText}>Old School Runescape</span>.
       </p>
       <Card title="Quick tips" classes={{ card: styles.quickTipsCard }}>
         <ul className={styles.quickTipsList}>

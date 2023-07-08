@@ -6,6 +6,7 @@ declare namespace HomeModScssNamespace {
     highestVolumeCard: string;
     highlightedText: string;
     home: string;
+    italicText: string;
     quickTipsCard: string;
     quickTipsList: string;
   }
