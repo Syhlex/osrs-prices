@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { ColDef } from 'ag-grid-community';
 import { Table } from 'components/Table/Table';
 import { useItems } from 'hooks/useItems';
-import { IsMembersItemRenderer } from './cellRenderers/IsMembersItem';
+import { IsMembersItemRenderer, ItemRenderer } from './cellRenderers';
 import {
   addCommas,
   addUnknown,
@@ -15,6 +15,7 @@ import styles from './HomeTables.mod.scss';
 const columnDefs: ColDef[] = [
   {
     field: 'item',
+    cellRenderer: ItemRenderer,
   },
   {
     field: 'members',
@@ -70,7 +71,7 @@ export const MostExpensiveTable = () => {
       })
       .splice(0, 15)
       .map((data) => ({
-        item: data.name,
+        item: { name: data.name, id: data.id, icon: data.icon },
         members: data.members,
         buyLimit: data.limit,
         buyPrice: data.high,

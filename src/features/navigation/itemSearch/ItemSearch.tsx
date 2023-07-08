@@ -5,9 +5,8 @@ import {
   Autocomplete,
   AutocompleteOption,
 } from 'components/Autocomplete/Autocomplete';
+import { getItemImageSource } from 'utils/itemImage.utils';
 import styles from './ItemSearch.mod.scss';
-
-const ITEM_IMAGE_URL = 'https://oldschool.runescape.wiki/images/';
 
 export const ItemSearch = () => {
   const [inputValue, setInputValue] = useState('');
@@ -17,12 +16,7 @@ export const ItemSearch = () => {
   const allOptions = itemRows.map((item) => ({
     label: item.name,
     value: item.id.toString(),
-    // Unescapes characters then replaces ' ' with '_'
-    // eg. Bullseye%20lantern.png -> Bullseye_lantern.png
-    image: `${ITEM_IMAGE_URL}${decodeURIComponent(item.icon).replace(
-      / /g,
-      '_',
-    )}`,
+    image: getItemImageSource(item.icon),
   }));
 
   const suggestions =

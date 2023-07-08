@@ -9,6 +9,9 @@ const membersImageSource =
 export const IsMembersItemRenderer = ({ value }: ICellRendererParams) => {
   const isMembersItem = value;
   return (
-    <img src={isMembersItem ? membersImageSource : nonMembersImageSource} />
+    <img
+      src={isMembersItem ? membersImageSource : nonMembersImageSource}
+      alt={isMembersItem ? 'Members-only' : 'Free-to-play'}
+    />
   );
 };
