@@ -36,9 +36,8 @@ export const Autocomplete = (props: AutocompleteProps) => {
       {showOptions && (
         <ul className={styles.autocompleteOptions}>
           {props.options.map((option) => (
-            <li
+            <a
               className={styles.autocompleteItem}
-              key={option.value}
               onMouseDown={(e) => {
                 e.preventDefault(); // prevent blur event which prevents onClick from firing
               }}
@@ -47,11 +46,13 @@ export const Autocomplete = (props: AutocompleteProps) => {
                 setShowOptions(false);
               }}
             >
-              <span className={styles.autocompleteItemImage}>
-                <img src={option.image} alt={option.label} />
-              </span>
-              {option.label}
-            </li>
+              <li className={styles.listItem} key={option.value}>
+                <span className={styles.autocompleteItemImage}>
+                  <img src={option.image} alt={option.label} />
+                </span>
+                {option.label}
+              </li>
+            </a>
           ))}
         </ul>
       )}

@@ -5,6 +5,7 @@ declare namespace AutocompleteModScssNamespace {
     autocompleteItemImage: string;
     autocompleteOptions: string;
     input: string;
+    listItem: string;
   }
 }
 

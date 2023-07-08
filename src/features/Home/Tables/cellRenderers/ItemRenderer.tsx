@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ICellRendererParams } from 'ag-grid-community';
 import { getItemImageSource } from 'utils/itemImage.utils';
 import styles from './ItemRenderer.mod.scss';
@@ -14,7 +15,7 @@ export const ItemRenderer = ({ value }: ICellRendererParams) => {
   return (
     <div className={styles.itemRenderer}>
       <img src={getItemImageSource(icon)} alt={name} />
-      {name}
+      <Link to={`/item/${id}`}>{name}</Link>
     </div>
   );
 };
