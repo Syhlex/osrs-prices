@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon, IconName } from 'components';
+import { Button, Card, Icon, IconName } from 'components';
 import { getItemImageSource } from 'utils/itemImage.utils';
 import { Item } from 'context/Items/ItemsContext';
 import styles from './ItemDetails.mod.scss';
@@ -21,6 +21,10 @@ export const ItemDetails = ({ item }: ItemDetails) => {
     );
   };
 
+  const copyUrlToClipboard = () => {
+    navigator.clipboard.writeText(window.location.href);
+  };
+
   return (
     <div className={styles.itemDetails}>
       <div className={styles.headerContainer}>
@@ -36,7 +40,7 @@ export const ItemDetails = ({ item }: ItemDetails) => {
           <Button variant="nav" onClick={navigateToGEDB}>
             GEDB
           </Button>
-          <Button variant="nav">
+          <Button variant="nav" onClick={copyUrlToClipboard}>
             <Icon name={IconName.Copy} />
           </Button>
           <Button variant="nav">
@@ -44,6 +48,8 @@ export const ItemDetails = ({ item }: ItemDetails) => {
           </Button>
         </div>
       </div>
+      <Card>Price</Card>
+      <Card>Volume</Card>
     </div>
   );
 };
