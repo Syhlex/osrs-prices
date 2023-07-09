@@ -74,7 +74,10 @@ export const HighestDailyVolumeTable = () => {
       styleProps={{ container: styles.container }}
       onModelUpdated={(e) => {
         e.api.sizeColumnsToFit({
-          columnLimits: [{ key: 'item', minWidth: 280 }],
+          columnLimits: [
+            { key: 'item', minWidth: 280 },
+            { key: 'dailyVolume', minWidth: 180 },
+          ],
         });
       }}
     />

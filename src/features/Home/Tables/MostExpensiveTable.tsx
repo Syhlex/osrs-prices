@@ -19,28 +19,23 @@ const columnDefs: ColDef[] = [
   },
   {
     field: 'members',
-    width: 75,
     cellRenderer: IsMembersItemRenderer,
   },
   {
     field: 'buyLimit',
-    width: 80,
     valueFormatter: getChainedValueFormatter([addCommas, addUnknown]),
     cellClass: getBuyLimitCellClass,
   },
   {
     field: 'buyPrice',
-    width: 100,
     valueFormatter: addCommas,
   },
   {
     field: 'sellPrice',
-    width: 100,
     valueFormatter: addCommas,
   },
   {
     field: 'margin',
-    width: 86,
     valueGetter: (params) => {
       return params.data.buyPrice - params.data.sellPrice;
     },
@@ -49,7 +44,6 @@ const columnDefs: ColDef[] = [
   },
   {
     field: 'dailyVolume',
-    width: 90,
   },
 ];
 
@@ -85,6 +79,16 @@ export const MostExpensiveTable = () => {
       columnDefs={columnDefs}
       rowData={mostExpensiveRowData}
       styleProps={{ container: styles.container }}
+      onModelUpdated={(e) => {
+        e.api.sizeColumnsToFit({
+          columnLimits: [
+            { key: 'item', minWidth: 280 },
+            { key: 'buyLimit', maxWidth: 105 },
+            { key: 'buyPrice', minWidth: 150 },
+            { key: 'sellPrice', minWidth: 150 },
+          ],
+        });
+      }}
     />
   );
 };
