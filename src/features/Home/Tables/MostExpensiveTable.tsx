@@ -19,7 +19,7 @@ const columnDefs: ColDef[] = [
   },
   {
     field: 'members',
-    width: 80,
+    width: 75,
     cellRenderer: IsMembersItemRenderer,
   },
   {
@@ -49,7 +49,7 @@ const columnDefs: ColDef[] = [
   },
   {
     field: 'dailyVolume',
-    width: 103,
+    width: 90,
   },
 ];
 
