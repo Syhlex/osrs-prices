@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logoImage from 'assets/images/Grand_Exchange_logo.webp';
-import { Button } from 'components/Button/Button';
-import { Icon, IconName } from 'components/Icon/Icon';
+import { Button, Icon, IconName } from 'components';
 import { Refresh } from './refresh/Refresh';
 import { ItemSearch } from './itemSearch/ItemSearch';
 import styles from './NavBar.mod.scss';

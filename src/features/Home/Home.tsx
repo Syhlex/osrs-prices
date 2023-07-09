@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card } from 'components/Card/Card';
-import { Icon, IconName } from 'components/Icon/Icon';
+import { Card, Icon, IconName } from 'components';
 import { useTitle } from 'hooks/useTitle';
 import { HighestDailyVolumeTable } from './Tables/HighestDailyVolumeTable';
 import { MostExpensiveTable } from './Tables/MostExpensiveTable';

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Button } from 'components/Button/Button';
-import { Icon, IconName } from 'components/Icon/Icon';
+import { Button, Icon, IconName } from 'components';
 import { useItems } from 'hooks/useItems';
 import styles from './Refresh.mod.scss';
 

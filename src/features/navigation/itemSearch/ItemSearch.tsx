@@ -1,10 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Autocomplete, AutocompleteOption } from 'components';
 import { useItems } from 'hooks/useItems';
-import {
-  Autocomplete,
-  AutocompleteOption,
-} from 'components/Autocomplete/Autocomplete';
 import { getItemImageSource } from 'utils/itemImage.utils';
 import styles from './ItemSearch.mod.scss';
 

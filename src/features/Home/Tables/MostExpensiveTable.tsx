@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { ColDef } from 'ag-grid-community';
-import { Table } from 'components/Table/Table';
+import { Table } from 'components';
 import { useItems } from 'hooks/useItems';
 import { IsMembersItemRenderer, ItemRenderer } from './cellRenderers';
 import {
