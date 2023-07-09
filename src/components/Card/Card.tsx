@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import styles from './Card.mod.scss';
 
 export interface CardProps {
-  title: string;
+  title?: string;
   children: ReactNode;
   classes?: { card?: string };
 }
@@ -11,7 +11,7 @@ export interface CardProps {
 export const Card = (props: CardProps) => {
   return (
     <div className={classNames(styles.card, props.classes?.card)}>
-      <div className={styles.cardHeader}>{props.title}</div>
+      {props.title && <div className={styles.cardHeader}>{props.title}</div>}
       <div className={styles.cardContent}>{props.children}</div>
     </div>
   );
