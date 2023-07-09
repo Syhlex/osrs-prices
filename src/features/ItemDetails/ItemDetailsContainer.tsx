@@ -8,8 +8,12 @@ export const ItemDetailsContainer = () => {
   const { id = '' } = useParams();
   const { itemsMap } = useItems();
   const item = itemsMap[id];
-  const itemName = item?.name ?? '';
-  useTitle(item?.name ?? '');
 
-  return <ItemDetails id={id} name={itemName} />;
+  if (!item) {
+    return <div>Item with id {id} was not found.</div>;
+  }
+
+  useTitle(item.name);
+
+  return <ItemDetails item={item} />;
 };

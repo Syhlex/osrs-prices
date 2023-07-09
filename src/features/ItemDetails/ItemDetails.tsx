@@ -1,41 +1,49 @@
 import React from 'react';
 import { Button, Icon, IconName } from 'components';
+import { getItemImageSource } from 'utils/itemImage.utils';
+import { Item } from 'context/Items/ItemsContext';
+import styles from './ItemDetails.mod.scss';
 
 export interface ItemDetails {
-  id: string;
-  name: string;
+  item: Item;
 }
 
-export const ItemDetails = (props: ItemDetails) => {
+export const ItemDetails = ({ item }: ItemDetails) => {
+  const navigateToWiki = () => {
+    window.open(
+      `https://oldschool.runescape.wiki/w/Special:Lookup?type=item&id=${item.id}`,
+    );
+  };
+
+  const navigateToGEDB = () => {
+    window.open(
+      `https://secure.runescape.com/m=itemdb_oldschool/viewitem?obj=${item.id}`,
+    );
+  };
+
   return (
-    <div>
-      {`${props.name} (Item ID: ${props.id})`}
-      <Button
-        variant="nav"
-        onClick={() => {
-          window.open(
-            `https://oldschool.runescape.wiki/w/Special:Lookup?type=item&id=${props.id}`,
-          );
-        }}
-      >
-        Wiki
-      </Button>
-      <Button
-        variant="nav"
-        onClick={() => {
-          window.open(
-            `https://secure.runescape.com/m=itemdb_oldschool/viewitem?obj=${props.id}`,
-          );
-        }}
-      >
-        GEDB
-      </Button>
-      <Button variant="nav">
-        <Icon name={IconName.Copy} />
-      </Button>
-      <Button variant="nav">
-        <Icon name={IconName.Heart} />
-      </Button>
+    <div className={styles.itemDetails}>
+      <div className={styles.headerContainer}>
+        <div className={styles.header}>
+          <img src={getItemImageSource(item.icon)} alt={item.name} />
+          <h3 className={styles.itemName}>{item.name}</h3>
+          <span className={styles.itemId}>{`(Item ID: ${item.id})`}</span>
+        </div>
+        <div className={styles.actionBar}>
+          <Button variant="nav" onClick={navigateToWiki}>
+            Wiki
+          </Button>
+          <Button variant="nav" onClick={navigateToGEDB}>
+            GEDB
+          </Button>
+          <Button variant="nav">
+            <Icon name={IconName.Copy} />
+          </Button>
+          <Button variant="nav">
+            <Icon name={IconName.Heart} />
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
