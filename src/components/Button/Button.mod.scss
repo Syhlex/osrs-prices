@@ -1,15 +1,45 @@
 @import 'css/colors.scss';
 
-.navButton {
-  padding: 8px 16px;
-  background-color: $grey-100;
+.baseButton {
   color: $white;
-  border: 1px solid $grey-90;
+  border-width: 1px;
+  border-style: solid;
   border-radius: 4px;
   line-height: 24px;
 
   &:hover {
-    border-color: #1d2124;
     cursor: pointer;
+  }
+}
+
+.navButton {
+  padding: 8px 16px;
+  background-color: $grey-100;
+  border-color: $grey-90;
+
+  &:hover {
+    border-color: #1d2124;
+  }
+}
+
+.primaryButton {
+  padding: 6px 12px;
+  background-color: $grey-50;
+  border-color: $grey-50;
+
+  &:hover {
+    background-color: $grey-60;
+    border-color: $grey-65;
+  }
+}
+
+.secondaryButton {
+  padding: 6px 12px;
+  background-color: $grey-90;
+  border-color: $grey-90;
+
+  &:hover {
+    background-color: $grey-95;
+    border-color: $grey-110;
   }
 }

@@ -34,16 +34,16 @@ export const ItemDetails = ({ item }: ItemDetails) => {
           <span className={styles.itemId}>{`(Item ID: ${item.id})`}</span>
         </div>
         <div className={styles.actionBar}>
-          <Button variant="nav" onClick={navigateToWiki}>
+          <Button variant="primary" onClick={navigateToWiki}>
             Wiki
           </Button>
-          <Button variant="nav" onClick={navigateToGEDB}>
+          <Button variant="primary" onClick={navigateToGEDB}>
             GEDB
           </Button>
-          <Button variant="nav" onClick={copyUrlToClipboard}>
+          <Button variant="secondary" onClick={copyUrlToClipboard}>
             <Icon name={IconName.Copy} />
           </Button>
-          <Button variant="nav">
+          <Button variant="secondary">
             <Icon name={IconName.Heart} />
           </Button>
         </div>
