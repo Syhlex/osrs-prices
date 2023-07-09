@@ -20,7 +20,9 @@ export const ItemSearch = () => {
     inputValue === ''
       ? []
       : allOptions
-          .filter((option) => option.label.includes(inputValue))
+          .filter((option) =>
+            option.label.toLowerCase().includes(inputValue.toLowerCase()),
+          )
           .slice(0, 10);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
