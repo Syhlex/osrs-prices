@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import CopyIcon from 'assets/icons/copy.svg';
 import HeartIcon from 'assets/icons/heart.svg';
 import ListIcon from 'assets/icons/list.svg';
 import RefreshIcon from 'assets/icons/refresh.svg';
@@ -8,6 +9,7 @@ import RefreshIcon from 'assets/icons/refresh.svg';
 import styles from './Icon.mod.scss';
 
 export enum IconName {
+  Copy = 'Copy',
   Heart = 'Heart',
   List = 'List',
   Refresh = 'Refresh',
@@ -19,6 +21,7 @@ export interface IconProps {
 }
 
 const iconsMap = {
+  [IconName.Copy]: CopyIcon,
   [IconName.Heart]: HeartIcon,
   [IconName.List]: ListIcon,
   [IconName.Refresh]: RefreshIcon,

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from 'components/Card/Card';
+import { Icon, IconName } from 'components/Icon/Icon';
 import { useTitle } from 'hooks/useTitle';
 import { HighestDailyVolumeTable } from './Tables/HighestDailyVolumeTable';
 import { MostExpensiveTable } from './Tables/MostExpensiveTable';
 import styles from './Home.mod.scss';
-import { Icon, IconName } from 'components/Icon/Icon';
 
 export const Home = () => {
   useTitle('Home');
@@ -31,8 +31,7 @@ export const Home = () => {
           <li>
             You can{' '}
             <span className={styles.favouriteText}>
-              <Icon name={IconName.Heart} className={styles.heartIcon} />{' '}
-              favourite
+              <Icon name={IconName.Heart} /> favourite
             </span>{' '}
             specific items, so that they appear on your{' '}
             <Link to="/favourites">Favourites</Link> page. This allows you to

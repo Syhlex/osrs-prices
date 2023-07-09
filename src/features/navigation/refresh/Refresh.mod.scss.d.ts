@@ -2,7 +2,6 @@ declare namespace RefreshModScssNamespace {
   export interface IRefreshModScss {
     autoRefreshCheckbox: string;
     autoRefreshWrapper: string;
-    refreshIcon: string;
   }
 }
 

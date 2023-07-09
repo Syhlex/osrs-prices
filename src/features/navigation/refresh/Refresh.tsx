@@ -56,7 +56,7 @@ export const Refresh = () => {
         {autoRefreshEnabled && ` (${timeRemaining})`}
       </span>
       <Button variant="nav" onClick={refreshData}>
-        <Icon name={IconName.Refresh} className={styles.refreshIcon} />
+        <Icon name={IconName.Refresh} />
       </Button>
     </div>
   );
