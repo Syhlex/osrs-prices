@@ -48,6 +48,29 @@ export const ItemDetails = ({ item }: ItemDetails) => {
           </Button>
         </div>
       </div>
+      <div className={styles.detailsSection}>
+        <div className={styles.detailsBox}>
+          <div>Buy Price:</div>
+          <div>Last trade:</div>
+          <div>Sell Price:</div>
+          <div>Last trade:</div>
+        </div>
+        <div className={styles.detailsBox}>
+          <div>Daily volume:</div>
+          <div>Based on the official OSRS GEDB</div>
+          <div>Margin:</div>
+          <div>Potential profit:</div>
+          <div>Margin * volume:</div>
+          <div>ROI:</div>
+        </div>
+        <div className={styles.detailsBox}>
+          <div>Buy limit</div>
+          <div>High alch</div>
+          <div>Low alch</div>
+          <div>Members</div>
+          <div>Examine</div>
+        </div>
+      </div>
       <Card>Price</Card>
       <Card>Volume</Card>
     </div>
