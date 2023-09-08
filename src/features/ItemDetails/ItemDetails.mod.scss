@@ -41,3 +41,30 @@
 .detailsBox {
   padding: 16px;
 }
+
+.title {
+  font-family: 'PT Serif', serif;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+
+  &Small {
+    @extend .title;
+    font-size: 16px;
+  }
+}
+
+.subtitle {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12.8px;
+  margin-bottom: 16px;
+}
+
+.grey {
+  color: $grey-30;
+}
+
+.buySellIcon {
+  margin-right: 6px;
+}
