@@ -4,7 +4,7 @@ import { Table } from 'components';
 import { useItems } from 'hooks/useItems';
 import { IsMembersItemRenderer, ItemRenderer } from './cellRenderers';
 import {
-  addCommas,
+  addCommasFormatter,
   addUnknown,
   getBuyLimitCellClass,
   getChainedValueFormatter,
@@ -23,16 +23,16 @@ const columnDefs: ColDef[] = [
   },
   {
     field: 'buyLimit',
-    valueFormatter: getChainedValueFormatter([addCommas, addUnknown]),
+    valueFormatter: getChainedValueFormatter([addCommasFormatter, addUnknown]),
     cellClass: getBuyLimitCellClass,
   },
   {
     field: 'buyPrice',
-    valueFormatter: addCommas,
+    valueFormatter: addCommasFormatter,
   },
   {
     field: 'sellPrice',
-    valueFormatter: addCommas,
+    valueFormatter: addCommasFormatter,
   },
   {
     field: 'margin',
@@ -40,7 +40,7 @@ const columnDefs: ColDef[] = [
       return params.data.buyPrice - params.data.sellPrice;
     },
     cellClass: getMarginCellClass,
-    valueFormatter: addCommas,
+    valueFormatter: addCommasFormatter,
   },
   {
     field: 'dailyVolume',

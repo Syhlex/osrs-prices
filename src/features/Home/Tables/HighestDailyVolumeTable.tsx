@@ -3,7 +3,7 @@ import { ColDef } from 'ag-grid-community';
 import { Table } from 'components';
 import { useItems } from 'hooks/useItems';
 import { IsMembersItemRenderer, ItemRenderer } from './cellRenderers';
-import { addCommas, getMarginCellClass } from './TableUtilFunctions';
+import { addCommasFormatter, getMarginCellClass } from './TableUtilFunctions';
 import styles from './HomeTables.mod.scss';
 
 const columnDefs: ColDef[] = [
@@ -17,7 +17,7 @@ const columnDefs: ColDef[] = [
   },
   {
     field: 'buyLimit',
-    valueFormatter: addCommas,
+    valueFormatter: addCommasFormatter,
   },
   {
     field: 'buyPrice',
@@ -34,7 +34,7 @@ const columnDefs: ColDef[] = [
   },
   {
     field: 'dailyVolume',
-    valueFormatter: addCommas,
+    valueFormatter: addCommasFormatter,
   },
 ];
 
