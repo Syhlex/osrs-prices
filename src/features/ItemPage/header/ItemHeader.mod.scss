@@ -1,0 +1,30 @@
+@import 'css/colors.scss';
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  font-family: 'PT Serif', serif;
+}
+
+.itemName {
+  font-size: 28px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.itemId {
+  font-size: 14px;
+  color: $grey-30;
+}
+
+.actionBar {
+  display: flex;
+  gap: 4px;
+}

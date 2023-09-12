@@ -1,0 +1,52 @@
+@import 'css/colors.scss';
+
+.itemDetails {
+  display: flex;
+  background-color: $grey-90;
+  margin-bottom: 16px;
+}
+
+.section {
+  padding: 16px;
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.title {
+  font-family: 'PT Serif', serif;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+
+  &Small {
+    @extend .title;
+    font-size: 16px;
+  }
+}
+
+.subtitle {
+  font-size: 12.8px;
+  margin-bottom: 16px;
+}
+
+.grey {
+  color: $grey-30;
+}
+
+.buySellIcon {
+  margin-right: 6px;
+}
+
+.rightSection {
+  display: grid;
+}
+
+.table {
+  vertical-align: top;
+
+  tr td:first-child {
+    font-weight: 700;
+    width: 25%;
+  }
+}

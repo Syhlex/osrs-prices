@@ -2,9 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useTitle } from 'hooks/useTitle';
 import { useItems } from 'hooks/useItems';
-import { ItemDetails } from './ItemDetails';
+import { ItemPage } from './ItemPage';
 
-export const ItemDetailsContainer = () => {
+export const ItemPageContainer = () => {
   const { id = '' } = useParams();
   const { itemsMap } = useItems();
   const item = itemsMap[id];
@@ -15,5 +15,5 @@ export const ItemDetailsContainer = () => {
 
   useTitle(item.name);
 
-  return <ItemDetails item={item} />;
+  return <ItemPage item={item} />;
 };

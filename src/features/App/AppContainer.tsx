@@ -7,7 +7,7 @@ import {
 import { Home } from 'features/Home';
 import { AllItems } from 'features/AllItems';
 import { App } from './App';
-import { ItemDetailsContainer } from 'features/ItemDetails/ItemDetailsContainer';
+import { ItemPageContainer } from 'features/ItemPage/ItemPageContainer';
 
 const routesConfig: RouteObject[] = [
   {
@@ -20,7 +20,7 @@ const routesConfig: RouteObject[] = [
   },
   {
     path: '/item/:id',
-    element: <ItemDetailsContainer />,
+    element: <ItemPageContainer />,
   },
   {
     path: '/favourites',

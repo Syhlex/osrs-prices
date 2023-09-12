@@ -1,16 +1,12 @@
 declare namespace ItemDetailsModScssNamespace {
   export interface IItemDetailsModScss {
-    actionBar: string;
     buySellIcon: string;
-    detailsBox: string;
-    detailsSection: string;
     grey: string;
-    header: string;
-    headerContainer: string;
     itemDetails: string;
-    itemId: string;
-    itemName: string;
+    rightSection: string;
+    section: string;
     subtitle: string;
+    table: string;
     title: string;
     titleSmall: string;
   }
