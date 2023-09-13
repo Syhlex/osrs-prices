@@ -1,3 +1,18 @@
+@import 'css/colors.scss';
+
 .itemPriceChart {
   margin: 16px 0;
+  text-align: center;
+}
+
+.title {
+  font-family: 'PT Serif, serif';
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: $grey-30;
+  line-height: 1.5;
 }
