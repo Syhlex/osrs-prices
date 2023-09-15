@@ -9,6 +9,11 @@ export const layoutSettings: Partial<Layout> = {
   xaxis: {
     type: 'date',
     tickangle: 0,
+    gridcolor: '#848484',
+  },
+  yaxis: {
+    tickformat: ',',
+    gridcolor: '#848484',
   },
 };
 
