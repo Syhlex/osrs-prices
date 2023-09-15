@@ -1,4 +1,4 @@
-import { Config, Layout } from 'plotly.js';
+import { Config, Layout, PlotData } from 'plotly.js';
 
 export const layoutSettings: Partial<Layout> = {
   paper_bgcolor: 'transparent',
@@ -15,4 +15,12 @@ export const layoutSettings: Partial<Layout> = {
 
 export const configSettings: Partial<Config> = {
   displayModeBar: false,
+};
+
+export const sharedDataSettings: Partial<PlotData> = {
+  type: 'scatter',
+  mode: 'lines+markers',
+  marker: {
+    size: 4,
+  },
 };

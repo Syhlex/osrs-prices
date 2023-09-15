@@ -1,13 +1,17 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
 import { Card } from 'components';
-import { configSettings, layoutSettings } from './chartConfig';
+import {
+  configSettings,
+  layoutSettings,
+  sharedDataSettings,
+} from './chartConfig';
 import styles from './ItemPriceChart.mod.scss';
 
 export interface ItemPriceChartProps {
   timeData: number[];
-  lowPriceData: (number | null)[];
-  highPriceData: (number | null)[];
+  lowPriceData: number[];
+  highPriceData: number[];
 }
 
 export const ItemPriceChart = ({
@@ -28,18 +32,18 @@ export const ItemPriceChart = ({
           {
             x: timeData,
             y: highPriceData,
-            type: 'scatter',
             line: {
               color: '#ffa333', // orange
             },
+            ...sharedDataSettings,
           },
           {
             x: timeData,
             y: lowPriceData,
-            type: 'scatter',
             line: {
               color: '#33ff5f', // green
             },
+            ...sharedDataSettings,
           },
         ]}
         layout={layoutSettings}
