@@ -1,6 +1,7 @@
 declare namespace ItemPriceChartModScssNamespace {
   export interface IItemPriceChartModScss {
     itemPriceChart: string;
+    plot: string;
     subtitle: string;
     title: string;
   }

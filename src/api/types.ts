@@ -1,4 +1,4 @@
-export type Timestep = '5m' | '1h' | '6h';
+export type Timestep = '5m' | '1h' | '6h' | '24h';
 
 export interface PriceInfo {
   high: number;

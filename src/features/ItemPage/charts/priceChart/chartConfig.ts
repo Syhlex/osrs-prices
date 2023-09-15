@@ -8,7 +8,6 @@ export const layoutSettings: Partial<Layout> = {
   showlegend: false,
   xaxis: {
     type: 'date',
-    dtick: 3 * 60 * 60 * 1000, // 3 hour tick interval
     tickangle: 0,
   },
 };
