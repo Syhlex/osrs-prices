@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { ItemPriceChart } from './priceChart/ItemPriceChart';
-import { GetTimeSeriesResponse, Timestep } from 'api/types';
-import { Item } from 'context/Items/ItemsContext';
 import { getTimeSeries } from 'api';
+import { GetTimeSeriesResponse, Timestep } from 'api/types';
 import { Card } from 'components';
+import { Item } from 'context/Items/ItemsContext';
+import { ItemPriceChart } from './priceChart/ItemPriceChart';
 
 export interface ItemChartsContainerProps {
   item: Item;
@@ -34,18 +34,20 @@ export const ItemChartsContainer = ({ item }: ItemChartsContainerProps) => {
     (
       acc: {
         timeData: number[];
-        lowPriceData: (number | null)[];
-        highPriceData: (number | null)[];
+        lowPriceData: number[];
+        highPriceData: number[];
         highVolumeData: number[];
         lowVolumeData: number[];
       },
       dataPoint,
     ) => {
-      acc.timeData.push(dataPoint.timestamp);
-      acc.lowPriceData.push(dataPoint.avgLowPrice);
-      acc.highPriceData.push(dataPoint.avgHighPrice);
-      acc.lowVolumeData.push(dataPoint.lowPriceVolume);
-      acc.highVolumeData.push(dataPoint.highPriceVolume);
+      if (dataPoint.avgHighPrice && dataPoint.avgLowPrice) {
+        acc.timeData.push(dataPoint.timestamp);
+        acc.lowPriceData.push(dataPoint.avgLowPrice);
+        acc.highPriceData.push(dataPoint.avgHighPrice);
+        acc.lowVolumeData.push(dataPoint.lowPriceVolume);
+        acc.highVolumeData.push(dataPoint.highPriceVolume);
+      }
       return acc;
     },
     {
