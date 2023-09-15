@@ -1,6 +1,7 @@
 import {
   GetItemDetailsResponse,
   GetLatestPricesResponse,
+  GetTimeSeriesResponse,
   GetVolumesResponse,
   Timestep,
 } from './types';
@@ -23,7 +24,10 @@ export const getItemDetails = (): Promise<GetItemDetailsResponse> => {
   return fetch(`${BASE_URL}/mapping`).then((response) => response.json());
 };
 
-export const getTimeSeries = (id: string, timestep: Timestep) => {
+export const getTimeSeries = (
+  id: string,
+  timestep: Timestep,
+): Promise<GetTimeSeriesResponse> => {
   return fetch(`${BASE_URL}/timeseries?id=${id}&timestep=${timestep}`).then(
     (response) => response.json(),
   );
