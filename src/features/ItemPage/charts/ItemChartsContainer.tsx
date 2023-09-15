@@ -24,51 +24,42 @@ export const ItemChartsContainer = ({ item }: ItemChartsContainerProps) => {
     return <div>Loading...</div>;
   }
 
-  const {
-    timeData,
-    lowPriceData,
-    highPriceData,
-    lowVolumeData,
-    highVolumeData,
-  } = timeSeriesData.data.reduce(
-    (
-      acc: {
-        timeData: number[];
-        lowPriceData: number[];
-        highPriceData: number[];
-        highVolumeData: number[];
-        lowVolumeData: number[];
+  const { lowPriceTimeData, lowPriceData, highPriceTimeData, highPriceData } =
+    timeSeriesData.data.reduce(
+      (
+        acc: {
+          lowPriceTimeData: number[];
+          lowPriceData: number[];
+          highPriceTimeData: number[];
+          highPriceData: number[];
+        },
+        dataPoint,
+      ) => {
+        if (dataPoint.avgLowPrice) {
+          acc.lowPriceTimeData.push(dataPoint.timestamp * 1000);
+          acc.lowPriceData.push(dataPoint.avgLowPrice);
+        }
+        if (dataPoint.avgHighPrice) {
+          acc.highPriceTimeData.push(dataPoint.timestamp * 1000);
+          acc.highPriceData.push(dataPoint.avgHighPrice);
+        }
+        return acc;
       },
-      dataPoint,
-    ) => {
-      if (dataPoint.avgHighPrice && dataPoint.avgLowPrice) {
-        acc.timeData.push(dataPoint.timestamp);
-        acc.lowPriceData.push(dataPoint.avgLowPrice);
-        acc.highPriceData.push(dataPoint.avgHighPrice);
-        acc.lowVolumeData.push(dataPoint.lowPriceVolume);
-        acc.highVolumeData.push(dataPoint.highPriceVolume);
-      }
-      return acc;
-    },
-    {
-      timeData: [],
-      lowPriceData: [],
-      highPriceData: [],
-      lowVolumeData: [],
-      highVolumeData: [],
-    },
-  );
-
-  const timeDataInMilliseconds = timeData.map((unixTimestamp) => {
-    return unixTimestamp * 1000;
-  });
+      {
+        lowPriceTimeData: [],
+        lowPriceData: [],
+        highPriceData: [],
+        highPriceTimeData: [],
+      },
+    );
 
   return (
     <div>
       <div>Timestep Select</div>
       <ItemPriceChart
-        timeData={timeDataInMilliseconds}
+        lowPriceTimeData={lowPriceTimeData}
         lowPriceData={lowPriceData}
+        highPriceTimeData={highPriceTimeData}
         highPriceData={highPriceData}
       />
       <Card>Volume</Card>

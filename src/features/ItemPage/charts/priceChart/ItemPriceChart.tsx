@@ -9,14 +9,16 @@ import {
 import styles from './ItemPriceChart.mod.scss';
 
 export interface ItemPriceChartProps {
-  timeData: number[];
+  lowPriceTimeData: number[];
   lowPriceData: number[];
+  highPriceTimeData: number[];
   highPriceData: number[];
 }
 
 export const ItemPriceChart = ({
-  timeData,
+  lowPriceTimeData,
   lowPriceData,
+  highPriceTimeData,
   highPriceData,
 }: ItemPriceChartProps) => {
   return (
@@ -28,9 +30,10 @@ export const ItemPriceChart = ({
         Displaying data at 5 minute intervals.
       </div>
       <Plot
+        className={styles.plot}
         data={[
           {
-            x: timeData,
+            x: highPriceTimeData,
             y: highPriceData,
             line: {
               color: '#ffa333', // orange
@@ -38,7 +41,7 @@ export const ItemPriceChart = ({
             ...sharedDataSettings,
           },
           {
-            x: timeData,
+            x: lowPriceTimeData,
             y: lowPriceData,
             line: {
               color: '#33ff5f', // green
