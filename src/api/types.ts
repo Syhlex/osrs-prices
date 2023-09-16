@@ -37,7 +37,7 @@ export interface GetVolumesResponse {
 }
 
 export interface TimeSeriesPoint {
-  timestamp: number;
+  timestamp: number; // in seconds
   avgHighPrice: number | null;
   avgLowPrice: number | null;
   highPriceVolume: number;

@@ -6,17 +6,31 @@ import { useRefresh } from 'hooks/useRefresh';
 import { PriceChart } from './PriceChart';
 import { VolumeChart } from './VolumeChart';
 
+type TimePeriodInDays = 1 | 7 | 30 | 365;
+
+const timePeriodToTimestep: { [period in TimePeriodInDays]: Timestep } = {
+  1: '5m',
+  7: '1h',
+  30: '6h',
+  365: '24h',
+};
+
+const getTimePeriodInMs = (timePeriod: TimePeriodInDays) => {
+  return timePeriod * 24 * 60 * 60 * 1000;
+};
+
 export interface ItemChartsContainerProps {
   item: Item;
 }
 
 export const ItemChartsContainer = ({ item }: ItemChartsContainerProps) => {
-  const [timestep, setTimestep] = useState<Timestep>('5m');
+  const [timePeriod, setTimePeriod] = useState<TimePeriodInDays>(1);
   const [timeSeriesData, setTimeSeriesData] = useState<TimeSeriesPoint[]>([]);
   const { setRefreshAction } = useRefresh();
 
   useEffect(() => {
     const fetchTimeSeries = () => {
+      const timestep = timePeriodToTimestep[timePeriod];
       getTimeSeries(item.id, timestep).then((response) => {
         setTimeSeriesData(response.data);
       });
@@ -25,7 +39,14 @@ export const ItemChartsContainer = ({ item }: ItemChartsContainerProps) => {
     setRefreshAction(() => () => {
       fetchTimeSeries();
     });
-  }, [item.id, timestep]);
+  }, [item.id, timePeriod]);
+
+  const timeSeriesDataWithinTimePeriod = timeSeriesData.filter((datapoint) => {
+    const timePeriodInMs = getTimePeriodInMs(timePeriod);
+    const now = Date.now();
+    const thresholdTimestamp = now - timePeriodInMs;
+    return datapoint.timestamp * 1000 >= thresholdTimestamp;
+  });
 
   const {
     lowPriceTimes,
@@ -35,7 +56,7 @@ export const ItemChartsContainer = ({ item }: ItemChartsContainerProps) => {
     volumeTimes,
     lowVolumes,
     highVolumes,
-  } = timeSeriesData.reduce(
+  } = timeSeriesDataWithinTimePeriod.reduce(
     (
       acc: {
         lowPriceTimes: number[];
@@ -46,19 +67,19 @@ export const ItemChartsContainer = ({ item }: ItemChartsContainerProps) => {
         lowVolumes: number[];
         highVolumes: number[];
       },
-      dataPoint,
+      datapoint,
     ) => {
-      if (dataPoint.avgLowPrice) {
-        acc.lowPriceTimes.push(dataPoint.timestamp * 1000);
-        acc.lowPrices.push(dataPoint.avgLowPrice);
+      if (datapoint.avgLowPrice) {
+        acc.lowPriceTimes.push(datapoint.timestamp * 1000);
+        acc.lowPrices.push(datapoint.avgLowPrice);
       }
-      if (dataPoint.avgHighPrice) {
-        acc.highPriceTimes.push(dataPoint.timestamp * 1000);
-        acc.highPrices.push(dataPoint.avgHighPrice);
+      if (datapoint.avgHighPrice) {
+        acc.highPriceTimes.push(datapoint.timestamp * 1000);
+        acc.highPrices.push(datapoint.avgHighPrice);
       }
-      acc.volumeTimes.push(dataPoint.timestamp * 1000);
-      acc.lowVolumes.push(dataPoint.lowPriceVolume);
-      acc.highVolumes.push(dataPoint.highPriceVolume);
+      acc.volumeTimes.push(datapoint.timestamp * 1000);
+      acc.lowVolumes.push(datapoint.lowPriceVolume);
+      acc.highVolumes.push(datapoint.highPriceVolume);
 
       return acc;
     },
