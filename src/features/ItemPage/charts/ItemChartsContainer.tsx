@@ -3,10 +3,11 @@ import { getTimeSeries } from 'api';
 import { TimeSeriesPoint, Timestep } from 'api/types';
 import { Item } from 'context/Items/ItemsContext';
 import { useRefresh } from 'hooks/useRefresh';
+import { TimePeriodSelect } from './TimePeriodSelect';
 import { PriceChart } from './PriceChart';
 import { VolumeChart } from './VolumeChart';
 
-type TimePeriodInDays = 1 | 7 | 30 | 365;
+export type TimePeriodInDays = 1 | 7 | 30 | 365;
 
 const timePeriodToTimestep: { [period in TimePeriodInDays]: Timestep } = {
   1: '5m',
@@ -95,8 +96,12 @@ export const ItemChartsContainer = ({ item }: ItemChartsContainerProps) => {
   );
 
   return (
-    <div>
-      <div>Timestep Select</div>
+    <div style={{ textAlign: 'right' }}>
+      <TimePeriodSelect
+        onSelect={(timePeriod) => {
+          setTimePeriod(timePeriod);
+        }}
+      />
       <PriceChart
         lowTimes={lowPriceTimes}
         lowPrices={lowPrices}

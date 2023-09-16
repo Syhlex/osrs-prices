@@ -1,0 +1,36 @@
+@import 'css/colors.scss';
+
+.select {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  margin: 0;
+  padding: 8px 0;
+  border-radius: 4px;
+  min-width: 160px;
+  color: $grey-105;
+  background-color: $white;
+  list-style: none;
+  text-align: left;
+  z-index: 1;
+}
+
+.listItem {
+  padding: 4px 24px;
+  line-height: 24px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $grey-20;
+  }
+
+  &:active {
+    background-color: $blue;
+    color: $white;
+  }
+}
