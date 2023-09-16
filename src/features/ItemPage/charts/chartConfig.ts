@@ -4,7 +4,7 @@ export const layoutSettings: Partial<Layout> = {
   paper_bgcolor: 'transparent',
   plot_bgcolor: 'transparent',
   font: { color: 'white' },
-  margin: { t: 0 },
+  margin: { t: 0, l: 100 },
   showlegend: false,
   xaxis: {
     type: 'date',
