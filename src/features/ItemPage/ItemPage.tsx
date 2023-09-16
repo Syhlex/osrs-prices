@@ -1,7 +1,7 @@
 import React from 'react';
 import { Item } from 'context/Items/ItemsContext';
 import { ItemHeader } from './header/ItemHeader';
-import { ItemDetails } from './details/ItemDetails';
+import { ItemDetailsContainer } from './details/ItemDetailsContainer';
 import { ItemChartsContainer } from './charts/ItemChartsContainer';
 import styles from './ItemPage.mod.scss';
 
@@ -13,7 +13,7 @@ export const ItemPage = ({ item }: ItemPageProps) => {
   return (
     <div className={styles.itemPage}>
       <ItemHeader item={item} />
-      <ItemDetails item={item} />
+      <ItemDetailsContainer item={item} />
       <ItemChartsContainer item={item} />
     </div>
   );

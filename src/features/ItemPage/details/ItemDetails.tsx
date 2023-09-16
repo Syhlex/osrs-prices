@@ -1,59 +1,42 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Item } from 'context/Items/ItemsContext';
-import { minutesAgo } from 'utils/time.utils';
 import buyIcon from 'assets/images/buy-icon.png';
 import sellIcon from 'assets/images/sell-icon.png';
 import styles from './ItemDetails.mod.scss';
-import { addCommas } from 'utils/number.utils';
 
 export interface ItemDetailsProps {
-  item: Item;
+  buyPrice: string;
+  sellPrice: string;
+  lastBuyTrade: string;
+  lastSellTrade: string;
+  volume: string;
+  margin: string;
+  potentialProfit: string;
+  marginTimesVolume: string;
+  roi: string;
+  buyLimit: string;
+  highAlch: string;
+  lowAlch: string;
+  isMembers: boolean;
+  examine: string;
 }
 
-export const ItemDetails = ({ item }: ItemDetailsProps) => {
-  const buyPrice =
-    item.high !== undefined ? `${addCommas(item.high)} coins` : 'Not available';
-  const sellPrice =
-    item.low !== undefined ? `${addCommas(item.low)} coins` : 'Not available';
-  const lastBuyTrade =
-    item.highTime !== undefined
-      ? `${minutesAgo(item.highTime)} minutes ago`
-      : 'Not available';
-  const lastSellTrade =
-    item.lowTime !== undefined
-      ? `${minutesAgo(item.lowTime)} minutes ago`
-      : 'Not available';
-
-  const volume = item.volume;
-  const volumeString =
-    volume !== undefined ? addCommas(volume) : 'Not available';
-  const margin =
-    item.high !== undefined && item.low !== undefined
-      ? item.high - item.low
-      : undefined;
-  const marginString =
-    margin !== undefined ? addCommas(margin) : 'Not available';
-  const potentialProfit =
-    typeof margin === 'number' && typeof item.limit === 'number'
-      ? addCommas(margin * item.limit)
-      : 'Not available';
-  const marginTimesVolume =
-    typeof margin === 'number' && typeof volume === 'number'
-      ? addCommas(margin * volume)
-      : 'Not available';
-  const ROI =
-    typeof margin === 'number' && typeof item.low === 'number'
-      ? `${((margin / item.low) * 100).toFixed(2)}%`
-      : 'Not available';
-
-  const buyLimit = item.limit !== undefined ? addCommas(item.limit) : 'Unknown';
-  const highAlchProfit = item.low
-    ? ` (${addCommas(item.highalch - item.low)})`
-    : '';
-  const highAlch = `${addCommas(item.highalch)}${highAlchProfit}`;
-  const lowAlch = addCommas(item.lowalch);
-
+export const ItemDetails = ({
+  buyPrice,
+  sellPrice,
+  lastBuyTrade,
+  lastSellTrade,
+  volume,
+  margin,
+  potentialProfit,
+  marginTimesVolume,
+  roi,
+  buyLimit,
+  highAlch,
+  lowAlch,
+  isMembers,
+  examine,
+}: ItemDetailsProps) => {
   return (
     <div className={styles.itemDetails}>
       <div className={styles.section}>
@@ -81,18 +64,18 @@ export const ItemDetails = ({ item }: ItemDetailsProps) => {
         </div>
       </div>
       <div className={styles.section}>
-        <div className={styles.title}>Daily volume: {volumeString}</div>
+        <div className={styles.title}>Daily volume: {volume}</div>
         <div className={classNames(styles.subtitle, styles.grey)}>
           Based on the official OSRS GEDB
         </div>
-        <div className={styles.title}>Margin: {marginString}</div>
+        <div className={styles.title}>Margin: {margin}</div>
         <div className={styles.titleSmall}>
           Potential profit: {potentialProfit}
         </div>
         <div className={styles.titleSmall}>
           Margin * volume: {marginTimesVolume}
         </div>
-        <div className={styles.title}>ROI: {ROI}</div>
+        <div className={styles.title}>ROI: {roi}</div>
       </div>
       <div className={classNames(styles.section, styles.rightSection)}>
         <table>
@@ -111,11 +94,11 @@ export const ItemDetails = ({ item }: ItemDetailsProps) => {
             </tr>
             <tr>
               <td>Members</td>
-              <td>{item.members.toString()}</td>
+              <td>{isMembers}</td>
             </tr>
             <tr>
               <td>Examine</td>
-              <td>{item.examine}</td>
+              <td>{examine}</td>
             </tr>
           </tbody>
         </table>

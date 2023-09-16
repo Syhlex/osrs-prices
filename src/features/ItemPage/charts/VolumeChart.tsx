@@ -1,9 +1,9 @@
 import React from 'react';
+import { Data } from 'plotly.js';
 import { getTickValues } from 'utils/chart.utils';
 import { addCommas } from 'utils/number.utils';
 import { configSettings, getLayoutSettings } from './chartConfig';
 import { ItemChartBase } from './ItemChartBase';
-import { Data } from 'plotly.js';
 
 export interface VolumeChartProps {
   timestamps: number[];
