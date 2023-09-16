@@ -2,11 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Button, Icon, IconName } from 'components';
 import { useItems } from 'hooks/useItems';
 import styles from './Refresh.mod.scss';
+import { useRefresh } from 'hooks/useRefresh';
 
 const AUTO_REFRESH_INTERVAL = 60;
 
 export const Refresh = () => {
   const { api: itemsApi } = useItems();
+  const { refreshAction } = useRefresh();
   const intervalId = useRef<number>();
   const [timeRemaining, setTimeRemaining] = useState(AUTO_REFRESH_INTERVAL);
   const [autoRefreshEnabled, setAutoRefreshEnabled] = useState(true);
@@ -14,6 +16,7 @@ export const Refresh = () => {
   const refreshData = () => {
     if (itemsApi) {
       itemsApi.refreshData();
+      refreshAction();
       setTimeRemaining(60);
     }
   };

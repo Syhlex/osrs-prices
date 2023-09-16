@@ -25,7 +25,7 @@ export const getItemDetails = (): Promise<GetItemDetailsResponse> => {
 };
 
 export const getTimeSeries = (
-  id: string,
+  id: number,
   timestep: Timestep,
 ): Promise<GetTimeSeriesResponse> => {
   return fetch(`${BASE_URL}/timeseries?id=${id}&timestep=${timestep}`).then(

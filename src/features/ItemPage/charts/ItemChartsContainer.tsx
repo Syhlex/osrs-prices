@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { getTimeSeries } from 'api';
-import { GetTimeSeriesResponse, Timestep } from 'api/types';
+import { TimeSeriesPoint, Timestep } from 'api/types';
 import { Card } from 'components';
 import { Item } from 'context/Items/ItemsContext';
+import { useRefresh } from 'hooks/useRefresh';
 import { ItemPriceChart } from './priceChart/ItemPriceChart';
 
 export interface ItemChartsContainerProps {
@@ -11,21 +12,23 @@ export interface ItemChartsContainerProps {
 
 export const ItemChartsContainer = ({ item }: ItemChartsContainerProps) => {
   const [timestep, setTimestep] = useState<Timestep>('5m');
-  const [timeSeriesData, setTimeSeriesData] = useState<GetTimeSeriesResponse>();
+  const [timeSeriesData, setTimeSeriesData] = useState<TimeSeriesPoint[]>([]);
+  const { setRefreshAction } = useRefresh();
 
   useEffect(() => {
-    // TODO: Needs to be wired with the refresh button
-    getTimeSeries(item.id.toString(), timestep).then((response) => {
-      setTimeSeriesData(response);
+    const fetchTimeSeries = () => {
+      getTimeSeries(item.id, timestep).then((response) => {
+        setTimeSeriesData(response.data);
+      });
+    };
+    fetchTimeSeries();
+    setRefreshAction(() => () => {
+      fetchTimeSeries();
     });
   }, [item.id, timestep]);
 
-  if (!timeSeriesData) {
-    return <div>Loading...</div>;
-  }
-
   const { lowPriceTimeData, lowPriceData, highPriceTimeData, highPriceData } =
-    timeSeriesData.data.reduce(
+    timeSeriesData.reduce(
       (
         acc: {
           lowPriceTimeData: number[];
