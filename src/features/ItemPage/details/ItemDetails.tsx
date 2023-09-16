@@ -47,7 +47,7 @@ export const ItemDetails = ({ item }: ItemDetailsProps) => {
       ? `${((margin / item.low) * 100).toFixed(2)}%`
       : 'Not available';
 
-  const buyLimit = item.limit ?? 'Unknown';
+  const buyLimit = item.limit !== undefined ? addCommas(item.limit) : 'Unknown';
   const highAlchProfit = item.low
     ? ` (${addCommas(item.highalch - item.low)})`
     : '';
