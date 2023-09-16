@@ -9,11 +9,11 @@ export const ItemPageContainer = () => {
   const { itemsMap } = useItems();
   const item = itemsMap[id];
 
+  useTitle(item?.name ?? '');
+
   if (!item) {
     return <div>Item with id {id} was not found.</div>;
   }
-
-  useTitle(item.name);
 
   return <ItemPage item={item} />;
 };
