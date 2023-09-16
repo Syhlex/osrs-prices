@@ -20,9 +20,11 @@ export const ItemsProvider = ({ children }: ItemsProviderProps) => {
   });
 
   const fetchData = useCallback(async () => {
-    const itemDetails = await getItemDetails();
-    const volumes = await getVolumes();
-    const latestPrices = await getLatestPrices();
+    const [itemDetails, volumes, latestPrices] = await Promise.all([
+      getItemDetails(),
+      getVolumes(),
+      getLatestPrices(),
+    ]);
     setRawData(() => ({
       itemDetails,
       volumes,
