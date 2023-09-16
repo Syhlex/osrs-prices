@@ -3,6 +3,7 @@ import { getTickValues } from 'utils/chart.utils';
 import { addCommas } from 'utils/number.utils';
 import { configSettings, getLayoutSettings } from './chartConfig';
 import { ItemChartBase } from './ItemChartBase';
+import { Data } from 'plotly.js';
 
 export interface VolumeChartProps {
   timestamps: number[];
@@ -22,6 +23,28 @@ export const VolumeChart = ({
   const tickValues = getTickValues(minValue, maxValue, numTicks);
   const tickText = tickValues.map((value) => addCommas(Math.abs(value)));
 
+  const highVolumeTrace: Data = {
+    name: 'High price volume',
+    x: timestamps,
+    y: highVolumes,
+    marker: {
+      color: '#ffa333', // orange
+    },
+    type: 'bar',
+  };
+
+  const lowVolumeTrace: Data = {
+    name: 'Low price volume',
+    x: timestamps,
+    y: lowVolumesNegated,
+    type: 'bar',
+    marker: {
+      color: '#33ff5f', // green
+    },
+    text: lowVolumes.map((value) => value.toString()), // Display positive value in hover tooltip
+    hovertemplate: '%{text:,}',
+  };
+
   return (
     <ItemChartBase
       title="Volume"
@@ -36,28 +59,7 @@ export const VolumeChart = ({
           },
         }),
         config: configSettings,
-        data: [
-          {
-            name: 'High price volume',
-            x: timestamps,
-            y: highVolumes,
-            marker: {
-              color: '#ffa333', // orange
-            },
-            type: 'bar',
-          },
-          {
-            name: 'Low price volume',
-            x: timestamps,
-            y: lowVolumesNegated,
-            type: 'bar',
-            marker: {
-              color: '#33ff5f', // green
-            },
-            text: lowVolumes.map((value) => value.toString()), // Display positive value in hover tooltip
-            hovertemplate: '%{text:,}',
-          },
-        ],
+        data: [highVolumeTrace, lowVolumeTrace],
       }}
     />
   );
