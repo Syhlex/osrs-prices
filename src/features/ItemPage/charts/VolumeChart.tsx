@@ -1,6 +1,8 @@
 import React from 'react';
-import { ItemChartBase } from './ItemChartBase';
+import { getTickValues } from 'utils/chart.utils';
+import { addCommas } from 'utils/number.utils';
 import { configSettings, getLayoutSettings } from './chartConfig';
+import { ItemChartBase } from './ItemChartBase';
 
 export interface VolumeChartProps {
   timestamps: number[];
@@ -13,12 +15,25 @@ export const VolumeChart = ({
   highVolumes,
   lowVolumes,
 }: VolumeChartProps) => {
+  const lowVolumesNegated = lowVolumes.map((value) => -value);
+  const numTicks = 6;
+  const minValue = Math.min(...lowVolumesNegated);
+  const maxValue = Math.max(...highVolumes);
+  const tickValues = getTickValues(minValue, maxValue, numTicks);
+  const tickText = tickValues.map((value) => addCommas(Math.abs(value)));
+
   return (
     <ItemChartBase
       title="Volume"
       plotProps={{
         layout: getLayoutSettings({
           barmode: 'overlay',
+          yaxis: {
+            tickformat: ',', // Adds commas to numbers
+            gridcolor: '#848484',
+            tickvals: tickValues,
+            ticktext: tickText,
+          },
         }),
         config: configSettings,
         data: [
@@ -34,11 +49,13 @@ export const VolumeChart = ({
           {
             name: 'Low price volume',
             x: timestamps,
-            y: lowVolumes,
+            y: lowVolumesNegated,
             type: 'bar',
             marker: {
               color: '#33ff5f', // green
             },
+            text: lowVolumes.map((value) => value.toString()), // Display positive value in hover tooltip
+            hovertemplate: '%{text:,}',
           },
         ],
       }}
