@@ -6,7 +6,7 @@ export const getLayoutSettings = (
   paper_bgcolor: 'transparent',
   plot_bgcolor: 'transparent',
   font: { color: 'white' },
-  margin: { t: 0, l: 100 },
+  margin: { t: 0, l: 100, b: 60, r: 42 },
   showlegend: false,
   xaxis: {
     type: 'date',
