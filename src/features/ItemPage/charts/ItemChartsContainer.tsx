@@ -4,7 +4,7 @@ import { TimeSeriesPoint, Timestep } from 'api/types';
 import { Card } from 'components';
 import { Item } from 'context/Items/ItemsContext';
 import { useRefresh } from 'hooks/useRefresh';
-import { ItemPriceChart } from './priceChart/ItemPriceChart';
+import { PriceChart } from './PriceChart';
 
 export interface ItemChartsContainerProps {
   item: Item;
@@ -59,7 +59,7 @@ export const ItemChartsContainer = ({ item }: ItemChartsContainerProps) => {
   return (
     <div>
       <div>Timestep Select</div>
-      <ItemPriceChart
+      <PriceChart
         lowPriceTimeData={lowPriceTimeData}
         lowPriceData={lowPriceData}
         highPriceTimeData={highPriceTimeData}
