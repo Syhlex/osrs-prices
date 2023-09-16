@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { getTimeSeries } from 'api';
 import { TimeSeriesPoint, Timestep } from 'api/types';
-import { Card } from 'components';
 import { Item } from 'context/Items/ItemsContext';
 import { useRefresh } from 'hooks/useRefresh';
 import { PriceChart } from './PriceChart';
+import { VolumeChart } from './VolumeChart';
 
 export interface ItemChartsContainerProps {
   item: Item;
@@ -27,45 +27,66 @@ export const ItemChartsContainer = ({ item }: ItemChartsContainerProps) => {
     });
   }, [item.id, timestep]);
 
-  const { lowPriceTimeData, lowPriceData, highPriceTimeData, highPriceData } =
-    timeSeriesData.reduce(
-      (
-        acc: {
-          lowPriceTimeData: number[];
-          lowPriceData: number[];
-          highPriceTimeData: number[];
-          highPriceData: number[];
-        },
-        dataPoint,
-      ) => {
-        if (dataPoint.avgLowPrice) {
-          acc.lowPriceTimeData.push(dataPoint.timestamp * 1000);
-          acc.lowPriceData.push(dataPoint.avgLowPrice);
-        }
-        if (dataPoint.avgHighPrice) {
-          acc.highPriceTimeData.push(dataPoint.timestamp * 1000);
-          acc.highPriceData.push(dataPoint.avgHighPrice);
-        }
-        return acc;
+  const {
+    lowPriceTimes,
+    lowPrices,
+    highPriceTimes,
+    highPrices,
+    volumeTimes,
+    lowVolumes,
+    highVolumes,
+  } = timeSeriesData.reduce(
+    (
+      acc: {
+        lowPriceTimes: number[];
+        lowPrices: number[];
+        highPriceTimes: number[];
+        highPrices: number[];
+        volumeTimes: number[];
+        lowVolumes: number[];
+        highVolumes: number[];
       },
-      {
-        lowPriceTimeData: [],
-        lowPriceData: [],
-        highPriceData: [],
-        highPriceTimeData: [],
-      },
-    );
+      dataPoint,
+    ) => {
+      if (dataPoint.avgLowPrice) {
+        acc.lowPriceTimes.push(dataPoint.timestamp * 1000);
+        acc.lowPrices.push(dataPoint.avgLowPrice);
+      }
+      if (dataPoint.avgHighPrice) {
+        acc.highPriceTimes.push(dataPoint.timestamp * 1000);
+        acc.highPrices.push(dataPoint.avgHighPrice);
+      }
+      acc.volumeTimes.push(dataPoint.timestamp * 1000);
+      acc.lowVolumes.push(dataPoint.lowPriceVolume);
+      acc.highVolumes.push(dataPoint.highPriceVolume);
+
+      return acc;
+    },
+    {
+      lowPriceTimes: [],
+      lowPrices: [],
+      highPriceTimes: [],
+      highPrices: [],
+      volumeTimes: [],
+      lowVolumes: [],
+      highVolumes: [],
+    },
+  );
 
   return (
     <div>
       <div>Timestep Select</div>
       <PriceChart
-        lowPriceTimeData={lowPriceTimeData}
-        lowPriceData={lowPriceData}
-        highPriceTimeData={highPriceTimeData}
-        highPriceData={highPriceData}
+        lowTimes={lowPriceTimes}
+        lowPrices={lowPrices}
+        highTimes={highPriceTimes}
+        highPrices={highPrices}
       />
-      <Card>Volume</Card>
+      <VolumeChart
+        timestamps={volumeTimes}
+        lowVolumes={lowVolumes}
+        highVolumes={highVolumes}
+      />
     </div>
   );
 };

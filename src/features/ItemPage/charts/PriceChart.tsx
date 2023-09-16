@@ -1,46 +1,52 @@
 import React from 'react';
-import {
-  configSettings,
-  layoutSettings,
-  sharedDataSettings,
-} from './chartConfig';
+import { configSettings, getLayoutSettings } from './chartConfig';
 import { ItemChartBase } from './ItemChartBase';
 
 export interface PriceChartProps {
-  lowPriceTimeData: number[];
-  lowPriceData: number[];
-  highPriceTimeData: number[];
-  highPriceData: number[];
+  lowTimes: number[];
+  lowPrices: number[];
+  highTimes: number[];
+  highPrices: number[];
 }
 
 export const PriceChart = ({
-  lowPriceTimeData,
-  lowPriceData,
-  highPriceTimeData,
-  highPriceData,
+  lowTimes,
+  lowPrices,
+  highTimes,
+  highPrices,
 }: PriceChartProps) => {
   return (
     <ItemChartBase
       title="Price"
       plotProps={{
-        layout: layoutSettings,
+        layout: getLayoutSettings(),
         config: configSettings,
         data: [
           {
-            x: highPriceTimeData,
-            y: highPriceData,
+            name: 'High price',
+            x: highTimes,
+            y: highPrices,
             line: {
               color: '#ffa333', // orange
             },
-            ...sharedDataSettings,
+            type: 'scatter',
+            mode: 'lines+markers',
+            marker: {
+              size: 4,
+            },
           },
           {
-            x: lowPriceTimeData,
-            y: lowPriceData,
+            name: 'Low price',
+            x: lowTimes,
+            y: lowPrices,
             line: {
               color: '#33ff5f', // green
             },
-            ...sharedDataSettings,
+            type: 'scatter',
+            mode: 'lines+markers',
+            marker: {
+              size: 4,
+            },
           },
         ],
       }}

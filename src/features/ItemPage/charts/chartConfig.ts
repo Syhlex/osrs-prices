@@ -1,6 +1,8 @@
-import { Config, Layout, PlotData } from 'plotly.js';
+import { Config, Layout } from 'plotly.js';
 
-export const layoutSettings: Partial<Layout> = {
+export const getLayoutSettings = (
+  overrides?: Partial<Layout>,
+): Partial<Layout> => ({
   paper_bgcolor: 'transparent',
   plot_bgcolor: 'transparent',
   font: { color: 'white' },
@@ -15,16 +17,14 @@ export const layoutSettings: Partial<Layout> = {
     tickformat: ',',
     gridcolor: '#848484',
   },
-};
+  hovermode: 'x unified',
+  hoverlabel: {
+    namelength: -1,
+    bgcolor: '#262a2e',
+  },
+  ...overrides,
+});
 
 export const configSettings: Partial<Config> = {
   displayModeBar: false,
-};
-
-export const sharedDataSettings: Partial<PlotData> = {
-  type: 'scatter',
-  mode: 'lines+markers',
-  marker: {
-    size: 4,
-  },
 };
