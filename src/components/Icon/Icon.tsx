@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import CaretDown from 'assets/icons/caret-down.svg';
 import CopyIcon from 'assets/icons/copy.svg';
 import HeartIcon from 'assets/icons/heart.svg';
 import ListIcon from 'assets/icons/list.svg';
@@ -9,6 +10,7 @@ import RefreshIcon from 'assets/icons/refresh.svg';
 import styles from './Icon.mod.scss';
 
 export enum IconName {
+  CaretDown = 'CaretDown',
   Copy = 'Copy',
   Heart = 'Heart',
   List = 'List',
@@ -21,6 +23,7 @@ export interface IconProps {
 }
 
 const iconsMap = {
+  [IconName.CaretDown]: CaretDown,
   [IconName.Copy]: CopyIcon,
   [IconName.Heart]: HeartIcon,
   [IconName.List]: ListIcon,

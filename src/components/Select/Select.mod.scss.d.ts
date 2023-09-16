@@ -1,5 +1,6 @@
 declare namespace SelectModScssNamespace {
   export interface ISelectModScss {
+    caret: string;
     dropdown: string;
     listItem: string;
     select: string;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, ButtonProps } from 'components/Button/Button';
+import { Icon, IconName } from 'components/Icon/Icon';
 import styles from './Select.mod.scss';
 
 export interface SelectOption<T> {
@@ -41,7 +42,8 @@ export const Select = <T extends {}>(props: SelectProps<T>) => {
       }}
     >
       <Button variant={props.buttonVariant} onClick={toggleDropdown}>
-        {selected?.label}&#9660;
+        {selected?.label}
+        <Icon name={IconName.CaretDown} className={styles.caret} />
       </Button>
       {menuOpen && (
         <ul className={styles.dropdown}>
