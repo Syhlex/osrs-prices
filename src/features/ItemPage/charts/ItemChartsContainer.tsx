@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { getTimeSeries } from 'api';
 import { TimeSeriesPoint, Timestep } from 'api/types';
 import { Item } from 'context/Items/ItemsContext';
@@ -47,12 +47,14 @@ export const ItemChartsContainer = ({ item }: ItemChartsContainerProps) => {
     [setTimePeriod],
   );
 
-  const timeSeriesDataWithinTimePeriod = timeSeriesData.filter((datapoint) => {
-    const timePeriodInMs = getTimePeriodInMs(timePeriod);
-    const now = Date.now();
-    const thresholdTimestamp = now - timePeriodInMs;
-    return datapoint.timestamp * 1000 >= thresholdTimestamp;
-  });
+  const timeSeriesDataWithinTimePeriod = useMemo(() => {
+    return timeSeriesData.filter((datapoint) => {
+      const timePeriodInMs = getTimePeriodInMs(timePeriod);
+      const now = Date.now();
+      const thresholdTimestamp = now - timePeriodInMs;
+      return datapoint.timestamp * 1000 >= thresholdTimestamp;
+    });
+  }, [timeSeriesData]);
 
   const { priceData, volumeData } = timeSeriesDataWithinTimePeriod.reduce(
     (
