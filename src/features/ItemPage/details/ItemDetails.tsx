@@ -2,6 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import buyIcon from 'assets/images/buy-icon.png';
 import sellIcon from 'assets/images/sell-icon.png';
+import membersImg from 'assets/images/members.png';
+import freeToPlayImg from 'assets/images/free-to-play.png';
 import styles from './ItemDetails.mod.scss';
 
 export interface ItemDetailsProps {
@@ -94,7 +96,12 @@ export const ItemDetails = ({
             </tr>
             <tr>
               <td>Members</td>
-              <td>{isMembers}</td>
+              <td>
+                <img
+                  src={isMembers ? membersImg : freeToPlayImg}
+                  alt={isMembers ? 'Members-only' : 'Free-to-play'}
+                />
+              </td>
             </tr>
             <tr>
               <td>Examine</td>
