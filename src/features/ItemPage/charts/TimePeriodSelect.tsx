@@ -1,8 +1,9 @@
 import React from 'react';
-import { Select, SelectOption } from 'components/Select/Select';
+import { DropdownOption } from 'components/Dropdown/Dropdown';
+import { Select } from 'components/Select/Select';
 import { TimePeriodInDays } from './ItemChartsContainer';
 
-const options: SelectOption<TimePeriodInDays>[] = [
+const options: DropdownOption<TimePeriodInDays>[] = [
   { label: '1 day', value: 1 },
   { label: '7 days', value: 7 },
   { label: '30 days', value: 30 },

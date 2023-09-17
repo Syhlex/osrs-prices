@@ -1,11 +1,16 @@
 @import 'css/colors.scss';
 
-.select {
+.dropdown {
   position: relative;
   box-sizing: border-box;
 }
 
-.dropdown {
+.caret {
+  width: 8px;
+  margin-left: 4px;
+}
+
+.menu {
   position: absolute;
   top: 40px;
   right: 0;
@@ -32,10 +37,4 @@
     background-color: $blue;
     color: $white;
   }
-}
-
-.caret {
-  width: 18px;
-  height: 13px;
-  margin-bottom: 2px;
 }

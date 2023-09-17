@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Button, ButtonProps } from 'components/Button/Button';
-import { Icon, IconName } from 'components/Icon/Icon';
-import styles from './Select.mod.scss';
-
-export interface SelectOption<T> {
-  label: string;
-  value: T;
-}
+import { ButtonProps } from 'components/Button/Button';
+import { Dropdown, DropdownOption } from 'components/Dropdown/Dropdown';
 
 export interface SelectProps<T> {
   buttonVariant: ButtonProps['variant'];
-  options: SelectOption<T>[];
-  onSelect: (selectedOption: SelectOption<T>) => void;
+  options: DropdownOption<T>[];
+  onSelect: (selectedOption: DropdownOption<T>) => void;
 }
 
-export const Select = <T extends {}>(props: SelectProps<T>) => {
-  const [selected, setSelected] = useState<SelectOption<T>>();
-  const [menuOpen, setMenuOpen] = useState(false);
+export const Select = <T extends unknown>(props: SelectProps<T>) => {
+  const [selected, setSelected] = useState<DropdownOption<T>>();
 
   useEffect(() => {
     if (props.options.length) {
@@ -24,47 +17,17 @@ export const Select = <T extends {}>(props: SelectProps<T>) => {
     }
   }, [props.options]);
 
-  const toggleDropdown = () => {
-    setMenuOpen((prev) => !prev);
-  };
-
-  const onSelectOption = (option: SelectOption<T>) => {
+  const onSelectOption = (option: DropdownOption<T>) => {
     setSelected(option);
     props.onSelect(option);
-    setMenuOpen(false);
   };
 
   return (
-    <div
-      className={styles.select}
-      onBlur={() => {
-        setMenuOpen(false);
-      }}
-    >
-      <Button variant={props.buttonVariant} onClick={toggleDropdown}>
-        {selected?.label}
-        <Icon name={IconName.CaretDown} className={styles.caret} />
-      </Button>
-      {menuOpen && (
-        <ul className={styles.dropdown}>
-          {props.options.map((option, index) => {
-            return (
-              <li
-                className={styles.listItem}
-                key={index}
-                onClick={() => {
-                  onSelectOption(option);
-                }}
-                onMouseDown={(e) => {
-                  e.preventDefault();
-                }}
-              >
-                {option.label}
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </div>
+    <Dropdown
+      buttonVariant={props.buttonVariant}
+      buttonText={selected?.label ?? ''}
+      options={props.options}
+      onSelect={onSelectOption}
+    />
   );
 };

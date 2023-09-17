@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import logoImage from 'assets/images/Grand_Exchange_logo.webp';
 import { Button, Icon, IconName } from 'components';
 import { ItemSearch } from './itemSearch/ItemSearch';
+import { MoreOptionsDropdown } from './MoreOptionsDropdown';
 import { RefreshContainer } from './refresh/RefreshContainer';
 import styles from './NavBar.mod.scss';
 
@@ -31,7 +32,7 @@ export const NavBar = () => {
           Favourites
         </Button>
       </Link>
-      <div className="more-options-dropdown" />
+      <MoreOptionsDropdown />
       <RefreshContainer />
     </nav>
   );
