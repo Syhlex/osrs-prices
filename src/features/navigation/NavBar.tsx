@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logoImage from 'assets/images/Grand_Exchange_logo.webp';
 import { Button, Icon, IconName } from 'components';
-import { Refresh } from './refresh/Refresh';
 import { ItemSearch } from './itemSearch/ItemSearch';
+import { RefreshContainer } from './refresh/RefreshContainer';
 import styles from './NavBar.mod.scss';
 
 export interface NavBarProps {}
@@ -32,7 +32,7 @@ export const NavBar = () => {
         </Button>
       </Link>
       <div className="more-options-dropdown" />
-      <Refresh />
+      <RefreshContainer />
     </nav>
   );
 };

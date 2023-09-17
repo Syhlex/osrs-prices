@@ -1,50 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { Button, Icon, IconName } from 'components';
-import { useItems } from 'hooks/useItems';
 import styles from './Refresh.mod.scss';
-import { useRefresh } from 'hooks/useRefresh';
 
-const AUTO_REFRESH_INTERVAL = 60;
+export interface RefreshProps {
+  timeRemaining: number;
+  autoRefreshEnabled: boolean;
+  toggleAutoRefresh: () => void;
+  onRefresh: () => void;
+}
 
-export const Refresh = () => {
-  const { api: itemsApi } = useItems();
-  const { refreshAction } = useRefresh();
-  const intervalId = useRef<number>();
-  const [timeRemaining, setTimeRemaining] = useState(AUTO_REFRESH_INTERVAL);
-  const [autoRefreshEnabled, setAutoRefreshEnabled] = useState(true);
-
-  const refreshData = () => {
-    if (itemsApi) {
-      itemsApi.refreshData();
-      refreshAction();
-      setTimeRemaining(60);
-    }
-  };
-
-  const toggleAutoRefresh = () => {
-    setAutoRefreshEnabled((prev) => !prev);
-  };
-
-  useEffect(() => {
-    if (autoRefreshEnabled) {
-      intervalId.current = window.setInterval(() => {
-        setTimeRemaining((prevTime) => prevTime - 1);
-      }, 1000);
-
-      return () => {
-        clearInterval(intervalId.current);
-        intervalId.current = undefined;
-        setTimeRemaining(AUTO_REFRESH_INTERVAL);
-      };
-    }
-  }, [autoRefreshEnabled]);
-
-  useEffect(() => {
-    if (timeRemaining === 0) {
-      refreshData();
-    }
-  }, [timeRemaining]);
-
+export const Refresh = ({
+  timeRemaining,
+  autoRefreshEnabled,
+  toggleAutoRefresh,
+  onRefresh,
+}: RefreshProps) => {
   return (
     <div className={styles.refresh}>
       <div className={styles.autoRefreshWrapper}>
@@ -57,7 +27,7 @@ export const Refresh = () => {
         Auto-refresh
         {autoRefreshEnabled && ` (${timeRemaining})`}
       </div>
-      <Button variant="nav" onClick={refreshData}>
+      <Button variant="nav" onClick={onRefresh}>
         <Icon name={IconName.Refresh} />
       </Button>
     </div>
