@@ -1,7 +1,7 @@
 import React from 'react';
 import { Data } from 'plotly.js';
 import { configSettings, getLayoutSettings } from './chartConfig';
-import { ItemChartBase } from './ItemChartBase';
+import { ChartBase } from './ChartBase';
 
 export interface PriceChartProps {
   lowTimes: number[];
@@ -45,13 +45,13 @@ export const PriceChart = ({
   };
 
   return (
-    <ItemChartBase
+    <ChartBase
       title="Price"
       plotProps={{
         layout: getLayoutSettings(),
         config: configSettings,
         data: [highPriceTrace, lowPriceTrace],
       }}
-    ></ItemChartBase>
+    />
   );
 };

@@ -1,16 +1,16 @@
 import React from 'react';
 import Plot, { PlotParams } from 'react-plotly.js';
 import { Card } from 'components';
-import styles from './ItemChartBase.mod.scss';
+import styles from './ChartBase.mod.scss';
 
-export interface ItemChartBaseProps {
+export interface ChartBaseProps {
   title: string;
   plotProps: PlotParams;
 }
 
-export const ItemChartBase = ({ title, plotProps }: ItemChartBaseProps) => {
+export const ChartBase = ({ title, plotProps }: ChartBaseProps) => {
   return (
-    <Card classes={{ card: styles.itemChartCard }}>
+    <Card classes={{ card: styles.chartCard }}>
       <div className={styles.title}>{title}</div>
       <div className={styles.subtitle}>
         Click and drag to zoom in. Double-click to zoom out.
