@@ -46,8 +46,8 @@ export const Refresh = () => {
   }, [timeRemaining]);
 
   return (
-    <div>
-      <span className={styles.autoRefreshWrapper}>
+    <div className={styles.refresh}>
+      <div className={styles.autoRefreshWrapper}>
         <input
           className={styles.autoRefreshCheckbox}
           type="checkbox"
@@ -56,7 +56,7 @@ export const Refresh = () => {
         />
         Auto-refresh
         {autoRefreshEnabled && ` (${timeRemaining})`}
-      </span>
+      </div>
       <Button variant="nav" onClick={refreshData}>
         <Icon name={IconName.Refresh} />
       </Button>

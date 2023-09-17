@@ -1,5 +1,12 @@
+.refresh {
+  display: flex;
+  align-items: center;
+}
+
 .autoRefreshWrapper {
-  margin: 0 16px;
+  display: flex;
+  justify-content: center;
+  min-width: 175px;
 }
 
 .autoRefreshCheckbox {
