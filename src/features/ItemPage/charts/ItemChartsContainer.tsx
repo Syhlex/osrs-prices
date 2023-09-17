@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { getTimeSeries } from 'api';
 import { TimeSeriesPoint, Timestep } from 'api/types';
 import { Item } from 'context/Items/ItemsContext';
 import { useRefresh } from 'hooks/useRefresh';
-import { TimePeriodSelect } from './TimePeriodSelect';
-import { PriceChart } from './PriceChart';
-import { VolumeChart } from './VolumeChart';
+import { ItemCharts } from './ItemCharts';
 
 export type TimePeriodInDays = 1 | 7 | 30 | 365;
 
@@ -42,6 +40,13 @@ export const ItemChartsContainer = ({ item }: ItemChartsContainerProps) => {
     });
   }, [item.id, timePeriod]);
 
+  const onTimePeriodSelect = useCallback(
+    (timePeriod) => {
+      setTimePeriod(timePeriod);
+    },
+    [setTimePeriod],
+  );
+
   const timeSeriesDataWithinTimePeriod = timeSeriesData.filter((datapoint) => {
     const timePeriodInMs = getTimePeriodInMs(timePeriod);
     const now = Date.now();
@@ -49,70 +54,58 @@ export const ItemChartsContainer = ({ item }: ItemChartsContainerProps) => {
     return datapoint.timestamp * 1000 >= thresholdTimestamp;
   });
 
-  const {
-    lowPriceTimes,
-    lowPrices,
-    highPriceTimes,
-    highPrices,
-    volumeTimes,
-    lowVolumes,
-    highVolumes,
-  } = timeSeriesDataWithinTimePeriod.reduce(
+  const { priceData, volumeData } = timeSeriesDataWithinTimePeriod.reduce(
     (
       acc: {
-        lowPriceTimes: number[];
-        lowPrices: number[];
-        highPriceTimes: number[];
-        highPrices: number[];
-        volumeTimes: number[];
-        lowVolumes: number[];
-        highVolumes: number[];
+        priceData: {
+          lowTimes: number[];
+          lowPrices: number[];
+          highTimes: number[];
+          highPrices: number[];
+        };
+        volumeData: {
+          timestamps: number[];
+          lowVolumes: number[];
+          highVolumes: number[];
+        };
       },
       datapoint,
     ) => {
+      const { priceData, volumeData } = acc;
       if (datapoint.avgLowPrice) {
-        acc.lowPriceTimes.push(datapoint.timestamp * 1000);
-        acc.lowPrices.push(datapoint.avgLowPrice);
+        priceData.lowTimes.push(datapoint.timestamp * 1000);
+        priceData.lowPrices.push(datapoint.avgLowPrice);
       }
       if (datapoint.avgHighPrice) {
-        acc.highPriceTimes.push(datapoint.timestamp * 1000);
-        acc.highPrices.push(datapoint.avgHighPrice);
+        priceData.highTimes.push(datapoint.timestamp * 1000);
+        priceData.highPrices.push(datapoint.avgHighPrice);
       }
-      acc.volumeTimes.push(datapoint.timestamp * 1000);
-      acc.lowVolumes.push(datapoint.lowPriceVolume);
-      acc.highVolumes.push(datapoint.highPriceVolume);
+      volumeData.timestamps.push(datapoint.timestamp * 1000);
+      volumeData.lowVolumes.push(datapoint.lowPriceVolume);
+      volumeData.highVolumes.push(datapoint.highPriceVolume);
 
       return acc;
     },
     {
-      lowPriceTimes: [],
-      lowPrices: [],
-      highPriceTimes: [],
-      highPrices: [],
-      volumeTimes: [],
-      lowVolumes: [],
-      highVolumes: [],
+      priceData: {
+        lowTimes: [],
+        lowPrices: [],
+        highTimes: [],
+        highPrices: [],
+      },
+      volumeData: {
+        timestamps: [],
+        lowVolumes: [],
+        highVolumes: [],
+      },
     },
   );
 
   return (
-    <div style={{ textAlign: 'right' }}>
-      <TimePeriodSelect
-        onSelect={(timePeriod) => {
-          setTimePeriod(timePeriod);
-        }}
-      />
-      <PriceChart
-        lowTimes={lowPriceTimes}
-        lowPrices={lowPrices}
-        highTimes={highPriceTimes}
-        highPrices={highPrices}
-      />
-      <VolumeChart
-        timestamps={volumeTimes}
-        lowVolumes={lowVolumes}
-        highVolumes={highVolumes}
-      />
-    </div>
+    <ItemCharts
+      onTimePeriodSelect={onTimePeriodSelect}
+      priceData={priceData}
+      volumeData={volumeData}
+    />
   );
 };
