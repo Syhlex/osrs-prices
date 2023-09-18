@@ -1,6 +1,7 @@
 declare namespace ButtonModScssNamespace {
   export interface IButtonModScss {
     baseButton: string;
+    disabled: string;
     navButton: string;
     primaryButton: string;
     secondaryButton: string;

@@ -7,8 +7,14 @@
   border-radius: 4px;
   line-height: 24px;
 
-  &:hover {
-    cursor: pointer;
+  &.disabled {
+    opacity: 0.65;
+  }
+
+  &:not(.disabled) {
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -17,8 +23,10 @@
   background-color: $grey-100;
   border-color: $grey-90;
 
-  &:hover {
-    border-color: #1d2124;
+  &:not(.disabled) {
+    &:hover {
+      border-color: #1d2124;
+    }
   }
 }
 
@@ -27,9 +35,11 @@
   background-color: $grey-50;
   border-color: $grey-50;
 
-  &:hover {
-    background-color: $grey-60;
-    border-color: $grey-65;
+  &:not(.disabled) {
+    &:hover {
+      background-color: $grey-60;
+      border-color: $grey-65;
+    }
   }
 }
 
@@ -38,8 +48,10 @@
   background-color: $grey-90;
   border-color: $grey-90;
 
-  &:hover {
-    background-color: $grey-95;
-    border-color: $grey-110;
+  &:not(.disabled) {
+    &:hover {
+      background-color: $grey-95;
+      border-color: $grey-110;
+    }
   }
 }
