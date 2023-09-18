@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Dropdown, DropdownOption } from 'components/Dropdown/Dropdown';
+import { Dropdown, DropdownOption } from 'components';
 
 export const MoreOptionsDropdown = () => {
   const navigate = useNavigate();

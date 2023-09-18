@@ -1,6 +1,5 @@
 import React from 'react';
-import { DropdownOption } from 'components/Dropdown/Dropdown';
-import { Select } from 'components/Select/Select';
+import { DropdownOption, Select } from 'components';
 import { TimePeriodInDays } from './ItemChartsContainer';
 
 const options: DropdownOption<TimePeriodInDays>[] = [

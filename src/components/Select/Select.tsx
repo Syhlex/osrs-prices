@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ButtonProps } from 'components/Button/Button';
-import { Dropdown, DropdownOption } from 'components/Dropdown/Dropdown';
+import { ButtonProps, Dropdown, DropdownOption } from 'components';
 
 export interface SelectProps<T> {
   buttonVariant: ButtonProps['variant'];
