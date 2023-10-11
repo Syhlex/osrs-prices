@@ -38,15 +38,15 @@
   margin-right: 6px;
 }
 
-.rightSection {
-  display: grid;
-}
-
 .table {
   vertical-align: top;
 
   tr td:first-child {
     font-weight: 700;
     width: 25%;
+  }
+
+  tr td:nth-child(2) {
+    padding-left: 12px;
   }
 }

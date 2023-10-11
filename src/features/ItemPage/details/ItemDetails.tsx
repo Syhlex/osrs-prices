@@ -79,7 +79,7 @@ export const ItemDetails = ({
         </div>
         <div className={styles.title}>ROI: {roi}</div>
       </div>
-      <div className={classNames(styles.section, styles.rightSection)}>
+      <div className={styles.section}>
         <table>
           <tbody className={styles.table}>
             <tr>

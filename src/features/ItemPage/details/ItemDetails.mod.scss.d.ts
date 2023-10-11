@@ -3,7 +3,6 @@ declare namespace ItemDetailsModScssNamespace {
     buySellIcon: string;
     grey: string;
     itemDetails: string;
-    rightSection: string;
     section: string;
     subtitle: string;
     table: string;
