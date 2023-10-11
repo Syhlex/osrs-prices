@@ -14,6 +14,9 @@ export const AllItems = () => {
 
   const numberOfPages = Math.ceil(items.length / itemsPerPage);
 
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const itemsToRender = items.slice(startIndex, startIndex + itemsPerPage);
+
   const goToFirstPage = () => {
     setCurrentPage(1);
   };
@@ -57,7 +60,7 @@ export const AllItems = () => {
         goToLastPage={goToLastPage}
         setItemsPerPage={updateItemsPerPage}
       />
-      <ItemTable />
+      <ItemTable items={itemsToRender} />
       <Pagination
         currentPage={currentPage}
         totalPages={numberOfPages}

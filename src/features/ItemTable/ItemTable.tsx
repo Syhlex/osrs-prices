@@ -2,16 +2,16 @@ import React, { useMemo } from 'react';
 import freeToPlayImg from 'assets/images/free-to-play.png';
 import membersImg from 'assets/images/members.png';
 import { Button, Icon, IconName } from 'components';
-import { useItems } from 'hooks/useItems';
+import { Item } from 'context/Items/ItemsContext';
 import { getItemImageSource } from 'utils/itemImage.utils';
 import { getItemDetailsText } from 'utils/itemDetails.utils';
 import styles from './ItemTable.mod.scss';
 
-export interface ItemTableProps {}
+export interface ItemTableProps {
+  items: Item[];
+}
 
-export const ItemTable = (props: ItemTableProps) => {
-  const { items } = useItems();
-
+export const ItemTable = ({ items }: ItemTableProps) => {
   const tableRows = useMemo(
     () =>
       items.map((item) => {
