@@ -9,8 +9,8 @@ export interface ItemDetailsContainerProps {
 
 export const ItemDetailsContainer = ({ item }: ItemDetailsContainerProps) => {
   const {
-    buyPrice,
-    sellPrice,
+    buyPriceText,
+    sellPriceText,
     lastBuyTrade,
     lastSellTrade,
     volumeText,
@@ -25,8 +25,8 @@ export const ItemDetailsContainer = ({ item }: ItemDetailsContainerProps) => {
 
   return (
     <ItemDetails
-      buyPrice={buyPrice}
-      sellPrice={sellPrice}
+      buyPrice={buyPriceText}
+      sellPrice={sellPriceText}
       lastBuyTrade={lastBuyTrade}
       lastSellTrade={lastSellTrade}
       volume={volumeText}

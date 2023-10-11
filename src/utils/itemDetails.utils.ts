@@ -15,8 +15,10 @@ const getLastTradeText = (timestamp?: number) => {
 };
 
 export const getItemDetailsText = (item: Item) => {
-  const buyPrice = getPriceText(item.high);
-  const sellPrice = getPriceText(item.low);
+  const buyPrice = item.high ? addCommas(item.high) : 'Unknown';
+  const buyPriceText = getPriceText(item.high);
+  const sellPrice = item.low ? addCommas(item.low) : 'Unknown';
+  const sellPriceText = getPriceText(item.low);
   const lastBuyTrade = getLastTradeText(item.highTime);
   const lastSellTrade = getLastTradeText(item.lowTime);
 
@@ -51,7 +53,9 @@ export const getItemDetailsText = (item: Item) => {
 
   return {
     buyPrice,
+    buyPriceText,
     sellPrice,
+    sellPriceText,
     lastBuyTrade,
     lastSellTrade,
     volumeText,
