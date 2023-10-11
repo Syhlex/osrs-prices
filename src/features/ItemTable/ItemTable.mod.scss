@@ -15,4 +15,8 @@
     text-align: left;
     border-bottom-width: 2px;
   }
+
+  tbody tr:nth-of-type(odd) {
+    background-color: hsla(0, 0%, 100%, 0.05);
+  }
 }
