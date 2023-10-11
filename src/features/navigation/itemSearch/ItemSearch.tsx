@@ -7,10 +7,10 @@ import styles from './ItemSearch.mod.scss';
 
 export const ItemSearch = () => {
   const [inputValue, setInputValue] = useState('');
-  const { itemRows } = useItems();
+  const { items } = useItems();
   const navigate = useNavigate();
 
-  const allOptions = itemRows.map((item) => ({
+  const allOptions = items.map((item) => ({
     label: item.name,
     value: item.id.toString(),
     image: getItemImageSource(item.icon),

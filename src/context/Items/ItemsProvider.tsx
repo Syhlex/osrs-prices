@@ -38,7 +38,7 @@ export const ItemsProvider = ({ children }: ItemsProviderProps) => {
     });
   }, []);
 
-  const itemRows: Item[] = useMemo(() => {
+  const items: Item[] = useMemo(() => {
     if (!rawData.itemDetails) {
       return [];
     }
@@ -51,11 +51,11 @@ export const ItemsProvider = ({ children }: ItemsProviderProps) => {
 
   const itemsMap = useMemo(
     () =>
-      itemRows.reduce((acc: ItemsMap, item) => {
+      items.reduce((acc: ItemsMap, item) => {
         acc[item.id] = item;
         return acc;
       }, {}),
-    [itemRows],
+    [items],
   );
 
   return (
@@ -69,7 +69,7 @@ export const ItemsProvider = ({ children }: ItemsProviderProps) => {
         api: {
           refreshData: fetchData,
         },
-        itemRows,
+        items,
         itemsMap,
       }}
     >

@@ -24,7 +24,7 @@ export type ItemsMap = { [id: string]: Item };
 export interface ItemsContextValues {
   raw: ApiValues;
   api: ItemsApi | undefined;
-  itemRows: Item[];
+  items: Item[];
   itemsMap: ItemsMap;
 }
 
@@ -35,6 +35,6 @@ export const ItemsContext = createContext<ItemsContextValues>({
     latestPrices: undefined,
   },
   api: undefined,
-  itemRows: [],
+  items: [],
   itemsMap: {},
 });

@@ -10,11 +10,11 @@ import styles from './ItemTable.mod.scss';
 export interface ItemTableProps {}
 
 export const ItemTable = (props: ItemTableProps) => {
-  const { itemRows } = useItems();
+  const { items } = useItems();
 
   const tableRows = useMemo(
     () =>
-      itemRows.map((item) => {
+      items.map((item) => {
         const {
           buyLimit,
           buyPrice,
@@ -56,7 +56,7 @@ export const ItemTable = (props: ItemTableProps) => {
           </tr>
         );
       }),
-    [itemRows],
+    [items],
   );
 
   return (

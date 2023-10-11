@@ -39,10 +39,10 @@ const columnDefs: ColDef[] = [
 ];
 
 export const HighestDailyVolumeTable = () => {
-  const { itemRows } = useItems();
+  const { items } = useItems();
 
   const highestVolumeRowData = useMemo(() => {
-    return [...itemRows]
+    return [...items]
       .sort((a, b) => {
         if (a.volume === b.volume) {
           return 0;
@@ -65,7 +65,7 @@ export const HighestDailyVolumeTable = () => {
           dailyVolume: data.volume,
         };
       });
-  }, [itemRows]);
+  }, [items]);
 
   return (
     <Table

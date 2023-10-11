@@ -7,12 +7,12 @@ import { ItemTable } from 'features/ItemTable/ItemTable';
 
 export const AllItems = () => {
   useTitle('All Items');
-  const { itemRows } = useItems();
+  const { items } = useItems();
   const [filterText, setFilterText] = useState('');
   const [itemsPerPage, setItemsPerPage] = useState(50);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const numberOfPages = Math.ceil(itemRows.length / itemsPerPage);
+  const numberOfPages = Math.ceil(items.length / itemsPerPage);
 
   const goToFirstPage = () => {
     setCurrentPage(1);
@@ -42,7 +42,7 @@ export const AllItems = () => {
   return (
     <div>
       <FilterInput
-        placeholder={`Filter ${itemRows.length} items...`}
+        placeholder={`Filter ${items.length} items...`}
         value={filterText}
         onChange={(value) => {
           setFilterText(value);
