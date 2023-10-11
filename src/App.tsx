@@ -11,9 +11,7 @@ export const App = () => {
       <ItemsProvider>
         <RefreshProvider>
           <NavBar />
-          <main className={styles.mainContent}>
-            <Outlet />
-          </main>
+          <Outlet />
         </RefreshProvider>
       </ItemsProvider>
     </div>
