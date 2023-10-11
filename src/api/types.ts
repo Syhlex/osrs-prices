@@ -19,10 +19,10 @@ export interface ItemDetails {
   examine: string;
   id: number;
   members: boolean;
-  lowalch: number;
+  lowalch?: number;
   limit?: number;
   value: number;
-  highalch: number;
+  highalch?: number;
   icon: string;
   name: string;
 }
