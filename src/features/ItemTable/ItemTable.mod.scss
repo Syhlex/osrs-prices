@@ -1,5 +1,18 @@
+@import 'css/colors.scss';
+
 .itemTable {
+  border-collapse: collapse;
+  background-color: $grey-90;
+
+  th,
+  td {
+    border: 1px solid $grey-80;
+    padding: 4.8px;
+    line-height: 24px;
+  }
+
   th {
     text-align: left;
+    border-bottom-width: 2px;
   }
 }
