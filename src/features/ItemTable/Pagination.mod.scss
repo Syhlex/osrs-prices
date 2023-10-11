@@ -1,0 +1,22 @@
+.goToFirstPageButton {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.goToPreviousPageButton {
+  border-radius: 0;
+}
+
+.goToNextPageButton {
+  border-radius: 0;
+}
+
+.goToLastPageButton {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.pageDisplay {
+  display: inline-block;
+  margin: 0 8px;
+}

@@ -1,8 +1,72 @@
+import React, { useState } from 'react';
 import { useTitle } from 'hooks/useTitle';
-import React from 'react';
+import { useItems } from 'hooks/useItems';
+import { FilterInput } from 'features/ItemTable/FilterInput';
+import { Pagination } from 'features/ItemTable/Pagination';
+import { ItemTable } from 'features/ItemTable/ItemTable';
 
 export const AllItems = () => {
   useTitle('All Items');
+  const { itemRows } = useItems();
+  const [filterText, setFilterText] = useState('');
+  const [itemsPerPage, setItemsPerPage] = useState(50);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  return <div>Hello world!</div>;
+  const numberOfPages = Math.ceil(itemRows.length / itemsPerPage);
+
+  const goToFirstPage = () => {
+    setCurrentPage(1);
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  const goToNextPage = () => {
+    if (currentPage < numberOfPages) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  const goToLastPage = () => {
+    setCurrentPage(numberOfPages);
+  };
+
+  const updateItemsPerPage = (value: number) => {
+    setItemsPerPage(value);
+    goToFirstPage();
+  };
+
+  return (
+    <div>
+      <FilterInput
+        placeholder={`Filter ${itemRows.length} items...`}
+        value={filterText}
+        onChange={(value) => {
+          setFilterText(value);
+        }}
+      />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={numberOfPages}
+        goToFirstPage={goToFirstPage}
+        goToPreviousPage={goToPreviousPage}
+        goToNextPage={goToNextPage}
+        goToLastPage={goToLastPage}
+        setItemsPerPage={updateItemsPerPage}
+      />
+      <ItemTable />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={numberOfPages}
+        goToFirstPage={goToFirstPage}
+        goToPreviousPage={goToPreviousPage}
+        goToNextPage={goToNextPage}
+        goToLastPage={goToLastPage}
+        setItemsPerPage={updateItemsPerPage}
+      />
+    </div>
+  );
 };
