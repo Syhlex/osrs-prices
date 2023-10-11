@@ -78,7 +78,7 @@ export const MostExpensiveTable = () => {
     <Table
       columnDefs={columnDefs}
       rowData={mostExpensiveRowData}
-      styleProps={{ container: styles.container }}
+      classes={{ container: styles.container }}
       onModelUpdated={(e) => {
         e.api.sizeColumnsToFit({
           columnLimits: [

@@ -71,7 +71,7 @@ export const HighestDailyVolumeTable = () => {
     <Table
       columnDefs={columnDefs}
       rowData={highestVolumeRowData}
-      styleProps={{ container: styles.container }}
+      classes={{ container: styles.container }}
       onModelUpdated={(e) => {
         e.api.sizeColumnsToFit({
           columnLimits: [
