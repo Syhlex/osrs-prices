@@ -4,6 +4,7 @@ import { useItems } from 'hooks/useItems';
 import { FilterInput } from 'features/ItemTable/FilterInput';
 import { Pagination } from 'features/ItemTable/Pagination';
 import { ItemTable } from 'features/ItemTable/ItemTable';
+import styles from './AllItems.mod.scss';
 
 export const AllItems = () => {
   useTitle('All Items');
@@ -43,7 +44,7 @@ export const AllItems = () => {
   };
 
   return (
-    <div>
+    <div className={styles.allItemsPage}>
       <FilterInput
         placeholder={`Filter ${items.length} items...`}
         value={filterText}
