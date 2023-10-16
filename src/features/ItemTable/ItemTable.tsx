@@ -4,7 +4,7 @@ import membersImg from 'assets/images/members.png';
 import { Button, Icon, IconName } from 'components';
 import { Item } from 'context/Items/ItemsContext';
 import { getItemImageSource } from 'utils/itemImage.utils';
-import { getItemDetailsText } from 'utils/itemDetails.utils';
+import { getItemDetails } from 'utils/itemDetails.utils';
 import styles from './ItemTable.mod.scss';
 
 export interface ItemTableProps {
@@ -25,11 +25,11 @@ export const ItemTable = ({ items }: ItemTableProps) => {
           volumeText,
           potentialProfit,
           marginTimesVolume,
-        } = getItemDetailsText(item);
+        } = getItemDetails(item);
 
         return (
           <tr>
-            <td>
+            <td className={styles.imageCell}>
               <img src={getItemImageSource(item.icon)} alt={item.name} />
             </td>
             <td>{item.name}</td>

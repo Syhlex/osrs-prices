@@ -1,5 +1,6 @@
 declare namespace ItemTableModScssNamespace {
   export interface IItemTableModScss {
+    imageCell: string;
     itemTable: string;
   }
 }

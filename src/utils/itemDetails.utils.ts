@@ -14,7 +14,7 @@ const getLastTradeText = (timestamp?: number) => {
   return `${minutesAgoVal} minute${minutesAgoVal > 1 ? 's' : ''} ago`;
 };
 
-export const getItemDetailsText = (item: Item) => {
+export const getItemDetails = (item: Item) => {
   const buyPrice = item.high ? addCommas(item.high) : 'Unknown';
   const buyPriceText = getPriceText(item.high);
   const sellPrice = item.low ? addCommas(item.low) : 'Unknown';

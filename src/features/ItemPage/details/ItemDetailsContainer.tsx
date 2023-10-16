@@ -1,6 +1,6 @@
 import React from 'react';
 import { Item } from 'context/Items/ItemsContext';
-import { getItemDetailsText } from 'utils/itemDetails.utils';
+import { getItemDetails } from 'utils/itemDetails.utils';
 import { ItemDetails } from './ItemDetails';
 
 export interface ItemDetailsContainerProps {
@@ -21,7 +21,7 @@ export const ItemDetailsContainer = ({ item }: ItemDetailsContainerProps) => {
     buyLimit,
     highAlch,
     lowAlch,
-  } = getItemDetailsText(item);
+  } = getItemDetails(item);
 
   return (
     <ItemDetails
