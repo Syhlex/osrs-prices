@@ -2,16 +2,32 @@ import React, { useMemo } from 'react';
 import freeToPlayImg from 'assets/images/free-to-play.png';
 import membersImg from 'assets/images/members.png';
 import { Button, Icon, IconName } from 'components';
-import { Item } from 'context/Items/ItemsContext';
 import { getItemImageSource } from 'utils/itemImage.utils';
 import { getItemDetails } from 'utils/itemDetails.utils';
 import styles from './ItemTable.mod.scss';
+import { Item } from 'context/Items/ItemsContext';
+import { ItemValues } from 'features/AllItems/AllItems';
 
 export interface ItemTableProps {
   items: Item[];
+  updateColumnSort: (columnName: keyof ItemValues) => void;
 }
 
-export const ItemTable = ({ items }: ItemTableProps) => {
+const tableColumns: { label: string; value: keyof ItemValues }[] = [
+  { label: 'Name', value: 'name' },
+  { label: 'Buy limit', value: 'buyLimit' },
+  { label: 'Members', value: 'members' },
+  { label: 'Buy price', value: 'buyPrice' },
+  { label: 'Most recent buy', value: 'lastBuyTime' },
+  { label: 'Sell price', value: 'sellPrice' },
+  { label: 'Most recent sell', value: 'lastSellTime' },
+  { label: 'Margin', value: 'margin' },
+  { label: 'Daily volume', value: 'volume' },
+  { label: 'Potential profit', value: 'potentialProfit' },
+  { label: 'Margin * volume', value: 'marginTimesVolume' },
+];
+
+export const ItemTable = ({ items, updateColumnSort }: ItemTableProps) => {
   const tableRows = useMemo(
     () =>
       items.map((item) => {
@@ -63,18 +79,18 @@ export const ItemTable = ({ items }: ItemTableProps) => {
     <table className={styles.itemTable}>
       <thead>
         <tr>
+          {/* item image */}
           <th />
-          <th>Name</th>
-          <th>Buy limit</th>
-          <th>Members</th>
-          <th>Buy price</th>
-          <th>Most recent buy</th>
-          <th>Sell price</th>
-          <th>Most recent sell</th>
-          <th>Margin</th>
-          <th>Daily volume</th>
-          <th>Potential profit</th>
-          <th>Margin * volume</th>
+          {tableColumns.map((column) => (
+            <th
+              onClick={() => {
+                updateColumnSort(column.value);
+              }}
+            >
+              {column.label}
+            </th>
+          ))}
+          {/* favourite */}
           <th />
         </tr>
       </thead>
