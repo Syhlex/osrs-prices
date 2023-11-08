@@ -12,7 +12,7 @@ import {
 } from 'utils/sorting.utils';
 import styles from './AllItems.mod.scss';
 
-type SortDirection = 'ascending' | 'descending';
+export type SortDirection = 'ascending' | 'descending';
 
 export interface ItemValues {
   name: string;
@@ -57,9 +57,9 @@ export const AllItems = () => {
   const [itemsPerPage, setItemsPerPage] = useState(50);
   const [currentPage, setCurrentPage] = useState(1);
   const [{ sortedColumn, sortDirection }, setColumnSort] = useState<{
-    sortedColumn: keyof ItemValues | null;
+    sortedColumn: keyof ItemValues | undefined;
     sortDirection: SortDirection;
-  }>({ sortedColumn: null, sortDirection: 'ascending' });
+  }>({ sortedColumn: undefined, sortDirection: 'ascending' });
 
   const numberOfPages = Math.ceil(items.length / itemsPerPage);
 
@@ -138,7 +138,7 @@ export const AllItems = () => {
       if (prev.sortedColumn === columnName) {
         return prev.sortDirection === 'ascending'
           ? { sortedColumn: columnName, sortDirection: 'descending' }
-          : { sortedColumn: null, sortDirection: 'ascending' };
+          : { sortedColumn: undefined, sortDirection: 'ascending' };
       } else {
         return { sortedColumn: columnName, sortDirection: 'ascending' };
       }
@@ -163,7 +163,12 @@ export const AllItems = () => {
         goToLastPage={goToLastPage}
         setItemsPerPage={updateItemsPerPage}
       />
-      <ItemTable items={itemsToRender} updateColumnSort={updateColumnSort} />
+      <ItemTable
+        items={itemsToRender}
+        updateColumnSort={updateColumnSort}
+        sortedColumn={sortedColumn}
+        sortDirection={sortDirection}
+      />
       <Pagination
         currentPage={currentPage}
         totalPages={numberOfPages}

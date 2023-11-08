@@ -6,11 +6,13 @@ import { getItemImageSource } from 'utils/itemImage.utils';
 import { getItemDetails } from 'utils/itemDetails.utils';
 import styles from './ItemTable.mod.scss';
 import { Item } from 'context/Items/ItemsContext';
-import { ItemValues } from 'features/AllItems/AllItems';
+import { ItemValues, SortDirection } from 'features/AllItems/AllItems';
 
 export interface ItemTableProps {
   items: Item[];
   updateColumnSort: (columnName: keyof ItemValues) => void;
+  sortedColumn?: keyof ItemValues;
+  sortDirection: SortDirection;
 }
 
 const tableColumns: { label: string; value: keyof ItemValues }[] = [
@@ -27,7 +29,12 @@ const tableColumns: { label: string; value: keyof ItemValues }[] = [
   { label: 'Margin * volume', value: 'marginTimesVolume' },
 ];
 
-export const ItemTable = ({ items, updateColumnSort }: ItemTableProps) => {
+export const ItemTable = ({
+  items,
+  updateColumnSort,
+  sortedColumn,
+  sortDirection,
+}: ItemTableProps) => {
   const tableRows = useMemo(
     () =>
       items.map((item) => {
@@ -83,11 +90,21 @@ export const ItemTable = ({ items, updateColumnSort }: ItemTableProps) => {
           <th />
           {tableColumns.map((column) => (
             <th
+              className={styles.header}
               onClick={() => {
                 updateColumnSort(column.value);
               }}
             >
               {column.label}
+              {sortedColumn === column.value && (
+                <Icon
+                  name={
+                    sortDirection === 'ascending'
+                      ? IconName.SortUp
+                      : IconName.SortDown
+                  }
+                />
+              )}
             </th>
           ))}
           {/* favourite */}
