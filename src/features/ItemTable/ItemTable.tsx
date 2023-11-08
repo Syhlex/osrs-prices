@@ -103,6 +103,7 @@ export const ItemTable = ({
                       ? IconName.SortUp
                       : IconName.SortDown
                   }
+                  className={styles.sortIcon}
                 />
               )}
             </th>

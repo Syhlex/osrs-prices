@@ -3,6 +3,7 @@ declare namespace ItemTableModScssNamespace {
     header: string;
     imageCell: string;
     itemTable: string;
+    sortIcon: string;
   }
 }
 
