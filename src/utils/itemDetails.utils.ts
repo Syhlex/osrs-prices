@@ -10,8 +10,28 @@ const getLastTradeText = (timestamp?: number) => {
   if (!timestamp) {
     return 'Unknown';
   }
-  const minutesAgoVal = minutesAgo(timestamp) || 1; // Lowest value is 1
-  return `${minutesAgoVal} minute${minutesAgoVal > 1 ? 's' : ''} ago`;
+
+  const minutesInOneHour = 60;
+  const minutesInOneDay = minutesInOneHour * 24;
+  const minutesInOneMonth = minutesInOneDay * 30;
+  const minutesInOneYear = minutesInOneMonth * 12;
+
+  const minutesAgoValue = minutesAgo(timestamp) || 1; // Lowest value is 1
+  if (minutesAgoValue < minutesInOneHour) {
+    return `${minutesAgoValue} minute${minutesAgoValue > 1 ? 's' : ''} ago`;
+  } else if (minutesAgoValue < minutesInOneDay) {
+    const hoursAgo = Math.floor(minutesAgoValue / minutesInOneHour);
+    return `${hoursAgo} hour${hoursAgo > 1 ? 's' : ''} ago`;
+  } else if (minutesAgoValue < minutesInOneMonth) {
+    const daysAgo = Math.floor(minutesAgoValue / minutesInOneDay);
+    return `${daysAgo} day${daysAgo > 1 ? 's' : ''} ago`;
+  } else if (minutesAgoValue < minutesInOneYear) {
+    const monthsAgo = Math.floor(minutesAgoValue / minutesInOneMonth);
+    return `${monthsAgo} month${monthsAgo > 1 ? 's' : ''} ago`;
+  } else {
+    const yearsAgo = Math.floor(minutesAgoValue / minutesInOneYear);
+    return `${yearsAgo} year${yearsAgo > 1 ? 's' : ''} ago`;
+  }
 };
 
 export const getItemDetails = (item: Item) => {
