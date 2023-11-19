@@ -13,6 +13,8 @@ export interface ItemTableProps {
   updateColumnSort: (columnName: keyof ItemValues) => void;
   sortedColumn?: keyof ItemValues;
   sortDirection: SortDirection;
+  toggleFavourite: (itemId: number) => void;
+  favourites: Set<number>;
 }
 
 const tableColumns: { label: string; value: keyof ItemValues }[] = [
@@ -34,6 +36,8 @@ export const ItemTable = ({
   updateColumnSort,
   sortedColumn,
   sortDirection,
+  favourites,
+  toggleFavourite,
 }: ItemTableProps) => {
   const tableRows = useMemo(
     () =>
@@ -72,7 +76,14 @@ export const ItemTable = ({
             <td>{potentialProfit}</td>
             <td>{marginTimesVolume}</td>
             <td>
-              <Button variant="primary">
+              <Button
+                variant={
+                  favourites.has(item.id) ? 'favouriteOn' : 'favouriteOff'
+                }
+                onClick={() => {
+                  toggleFavourite(item.id);
+                }}
+              >
                 <Icon name={IconName.Heart} />
               </Button>
             </td>

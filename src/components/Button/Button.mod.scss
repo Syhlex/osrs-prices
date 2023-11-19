@@ -55,3 +55,29 @@
     }
   }
 }
+
+.favouriteButtonOn {
+  padding: 6px 12px;
+  background-color: $green-10;
+  border-color: $grey-90;
+
+  &:not(.disabled) {
+    &:hover {
+      background-color: $green-20;
+      border-color: $grey-110;
+    }
+  }
+}
+
+.favouriteButtonOff {
+  padding: 6px 12px;
+  background-color: $grey-90;
+  border-color: $grey-90;
+
+  &:not(.disabled) {
+    &:hover {
+      background-color: $grey-95;
+      border-color: $grey-110;
+    }
+  }
+}

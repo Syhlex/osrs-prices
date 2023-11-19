@@ -4,7 +4,7 @@ import styles from './Button.mod.scss';
 
 export interface ButtonProps {
   children: ReactNode;
-  variant: 'nav' | 'primary' | 'secondary';
+  variant: 'nav' | 'primary' | 'secondary' | 'favouriteOn' | 'favouriteOff';
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
   classes?: { button?: string };
   disabled?: boolean;
@@ -48,11 +48,21 @@ const SecondaryButton = (props: ButtonVariantProps) => {
   return <BaseButton variantClass={styles.secondaryButton} {...props} />;
 };
 
+const FavouriteButtonOn = (props: ButtonVariantProps) => {
+  return <BaseButton variantClass={styles.favouriteButtonOn} {...props} />;
+};
+
+const FavouriteButtonOff = (props: ButtonVariantProps) => {
+  return <BaseButton variantClass={styles.favouriteButtonOff} {...props} />;
+};
+
 export const Button = ({ variant, ...props }: ButtonProps) => {
   const buttons = {
     nav: NavButton,
     primary: PrimaryButton,
     secondary: SecondaryButton,
+    favouriteOn: FavouriteButtonOn,
+    favouriteOff: FavouriteButtonOff,
   };
   const ButtonVariant = buttons[variant];
   return <ButtonVariant {...props} />;

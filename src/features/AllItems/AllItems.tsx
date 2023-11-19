@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Item } from 'context/Items/ItemsContext';
 import { useTitle } from 'hooks/useTitle';
 import { useItems } from 'hooks/useItems';
+import {
+  getStoredFavourites,
+  setStoredFavourites,
+} from 'features/Favourites/favouritesManager';
 import { FilterInput } from 'features/ItemTable/FilterInput';
 import { Pagination } from 'features/ItemTable/Pagination';
 import { ItemTable } from 'features/ItemTable/ItemTable';
@@ -60,6 +64,24 @@ export const AllItems = () => {
     sortedColumn: keyof ItemValues | undefined;
     sortDirection: SortDirection;
   }>({ sortedColumn: undefined, sortDirection: 'ascending' });
+
+  const [favourites, setFavourites] = useState(new Set<number>());
+  useEffect(() => {
+    getStoredFavourites().then((favourites) => {
+      setFavourites(favourites);
+    });
+  }, []);
+
+  const toggleFavourite = (itemId: number) => {
+    const updatedFavourites = new Set(favourites);
+    if (updatedFavourites.has(itemId)) {
+      updatedFavourites.delete(itemId);
+    } else {
+      updatedFavourites.add(itemId);
+    }
+    setFavourites(updatedFavourites);
+    setStoredFavourites(updatedFavourites);
+  };
 
   const numberOfPages = Math.ceil(items.length / itemsPerPage);
 
@@ -165,9 +187,11 @@ export const AllItems = () => {
       />
       <ItemTable
         items={itemsToRender}
-        updateColumnSort={updateColumnSort}
         sortedColumn={sortedColumn}
         sortDirection={sortDirection}
+        updateColumnSort={updateColumnSort}
+        favourites={favourites}
+        toggleFavourite={toggleFavourite}
       />
       <Pagination
         currentPage={currentPage}
