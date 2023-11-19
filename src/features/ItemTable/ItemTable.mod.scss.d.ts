@@ -1,8 +1,11 @@
 declare namespace ItemTableModScssNamespace {
   export interface IItemTableModScss {
+    grey: string;
     header: string;
     imageCell: string;
     itemTable: string;
+    negative: string;
+    positive: string;
     sortIcon: string;
   }
 }

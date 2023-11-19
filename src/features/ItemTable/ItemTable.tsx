@@ -54,6 +54,13 @@ export const ItemTable = ({
           marginTimesVolume,
         } = getItemDetails(item);
 
+        const getNumberClass = (number: number) => {
+          if (isNaN(number)) {
+            return styles.grey;
+          }
+          return number >= 0 ? styles.positive : styles.negative;
+        };
+
         return (
           <tr>
             <td className={styles.imageCell}>
@@ -68,13 +75,19 @@ export const ItemTable = ({
               />
             </td>
             <td>{buyPrice}</td>
-            <td>{lastBuyTrade}</td>
+            <td className={styles.grey}>{lastBuyTrade}</td>
             <td>{sellPrice}</td>
-            <td>{lastSellTrade}</td>
-            <td>{marginText}</td>
+            <td className={styles.grey}>{lastSellTrade}</td>
+            <td className={getNumberClass(parseInt(marginText))}>
+              {marginText}
+            </td>
             <td>{volumeText}</td>
-            <td>{potentialProfit}</td>
-            <td>{marginTimesVolume}</td>
+            <td className={getNumberClass(parseInt(potentialProfit))}>
+              {potentialProfit}
+            </td>
+            <td className={getNumberClass(parseInt(marginTimesVolume))}>
+              {marginTimesVolume}
+            </td>
             <td>
               <Button
                 variant={
