@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Autocomplete, AutocompleteOption } from 'components';
 import { useItems } from 'hooks/useItems';
@@ -29,6 +29,13 @@ export const ItemSearch = () => {
     setInputValue(e.target.value);
   };
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      navigate(`/all-items?search=${inputValue}`);
+      setInputValue('');
+    }
+  };
+
   const handleSelect = (option: AutocompleteOption) => {
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
@@ -44,6 +51,7 @@ export const ItemSearch = () => {
       options={suggestions}
       classes={{ autocomplete: styles.autocomplete }}
       onInputChange={handleInputChange}
+      onKeyDown={handleKeyDown}
       onSelect={handleSelect}
     />
   );

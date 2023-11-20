@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Item } from 'context/Items/ItemsContext';
 import {
   sortAlphabetical,
@@ -68,6 +69,12 @@ export const ItemTableContainer = ({
     sortedColumn: keyof ItemValues | undefined;
     sortDirection: SortDirection;
   }>({ sortedColumn: undefined, sortDirection: 'ascending' });
+
+  const location = useLocation();
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    setFilterText(urlParams.get('search') ?? '');
+  }, [location.search]);
 
   const numberOfPages = Math.ceil(items.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;

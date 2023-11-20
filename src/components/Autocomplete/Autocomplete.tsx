@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 import styles from './Autocomplete.mod.scss';
 import classnames from 'classnames';
 
@@ -14,6 +14,7 @@ export interface AutocompleteProps {
   placeholder?: string;
   classes?: { autocomplete?: string; input?: string };
   onInputChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   onSelect: (option: AutocompleteOption) => void;
 }
 
@@ -32,6 +33,7 @@ export const Autocomplete = (props: AutocompleteProps) => {
         placeholder={props.placeholder}
         className={classnames(styles.input, props.classes?.input)}
         onChange={props.onInputChange}
+        onKeyDown={props.onKeyDown}
       />
       {showOptions && (
         <ul className={styles.autocompleteOptions}>
