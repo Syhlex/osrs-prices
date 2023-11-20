@@ -4,9 +4,9 @@ import freeToPlayImg from 'assets/images/free-to-play.png';
 import membersImg from 'assets/images/members.png';
 import { Button, Icon, IconName } from 'components';
 import { Item } from 'context/Items/ItemsContext';
-import { ItemValues, SortDirection } from 'features/AllItems/AllItems';
 import { getItemImageSource } from 'utils/itemImage.utils';
 import { getItemDetails } from 'utils/itemDetails.utils';
+import { ItemValues, SortDirection } from './ItemTableContainer';
 import styles from './ItemTable.mod.scss';
 
 export interface ItemTableProps {
