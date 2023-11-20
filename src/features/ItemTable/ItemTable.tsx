@@ -1,12 +1,13 @@
 import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import freeToPlayImg from 'assets/images/free-to-play.png';
 import membersImg from 'assets/images/members.png';
 import { Button, Icon, IconName } from 'components';
+import { Item } from 'context/Items/ItemsContext';
+import { ItemValues, SortDirection } from 'features/AllItems/AllItems';
 import { getItemImageSource } from 'utils/itemImage.utils';
 import { getItemDetails } from 'utils/itemDetails.utils';
 import styles from './ItemTable.mod.scss';
-import { Item } from 'context/Items/ItemsContext';
-import { ItemValues, SortDirection } from 'features/AllItems/AllItems';
 
 export interface ItemTableProps {
   items: Item[];
@@ -66,7 +67,9 @@ export const ItemTable = ({
             <td className={styles.imageCell}>
               <img src={getItemImageSource(item.icon)} alt={item.name} />
             </td>
-            <td>{item.name}</td>
+            <td>
+              <Link to={`/item/${item.id}`}>{item.name}</Link>
+            </td>
             <td>{buyLimit}</td>
             <td>
               <img
