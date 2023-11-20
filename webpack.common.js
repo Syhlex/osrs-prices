@@ -88,7 +88,7 @@ const webConfig = {
       template: 'src/index.html',
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: 'public', to: '' }],
+      patterns: [{ from: 'public', to: '', noErrorOnMissing: true }],
     }),
   ],
 };
