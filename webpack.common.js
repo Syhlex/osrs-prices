@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const jsLoadingRules = {
   test: /\.(ts|js)(x?)$/,
@@ -84,7 +85,10 @@ const webConfig = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'public/index.html',
+      template: 'src/index.html',
+    }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: 'public', to: '' }],
     }),
   ],
 };
