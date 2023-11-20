@@ -6,6 +6,7 @@ import {
   setStoredFavourites,
 } from 'features/Favourites/favouritesManager';
 import { ItemTableContainer } from 'features/ItemTable/ItemTableContainer';
+import styles from './AllItems.mod.scss';
 
 export const AllItems = () => {
   useTitle('All Items');
@@ -30,10 +31,12 @@ export const AllItems = () => {
   };
 
   return (
-    <ItemTableContainer
-      items={items}
-      favourites={favourites}
-      toggleFavourite={toggleFavourite}
-    />
+    <div className={styles.allItems}>
+      <ItemTableContainer
+        items={items}
+        favourites={favourites}
+        toggleFavourite={toggleFavourite}
+      />
+    </div>
   );
 };
