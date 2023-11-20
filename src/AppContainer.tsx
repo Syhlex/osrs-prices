@@ -15,9 +15,6 @@ const routesConfig: RouteObject[] = [
   { path: '/all-items', element: <AllItems /> },
   { path: '/item/:id', element: <ItemPageContainer /> },
   { path: '/favourites', element: <FavouritesPageContainer /> },
-  { path: '/alchemy', element: <div>Under construction</div> },
-  { path: '/changelog', element: <div>Under construction</div> },
-  { path: '/faqs', element: <div>Under construction</div> },
 ];
 
 const router = createBrowserRouter([
