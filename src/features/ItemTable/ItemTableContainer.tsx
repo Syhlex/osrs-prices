@@ -16,6 +16,8 @@ import styles from './ItemTableContainer.mod.scss';
 
 export interface ItemTableContainerProps {
   items: Item[];
+  favourites: Set<number>;
+  toggleFavourite: (itemId: number) => void;
 }
 
 export type SortDirection = 'ascending' | 'descending';
@@ -56,7 +58,11 @@ const getItemValues = (item: Item): ItemValues => {
   };
 };
 
-export const ItemTableContainer = ({ items }: ItemTableContainerProps) => {
+export const ItemTableContainer = ({
+  items,
+  favourites,
+  toggleFavourite,
+}: ItemTableContainerProps) => {
   const [filterText, setFilterText] = useState('');
   const [itemsPerPage, setItemsPerPage] = useState(50);
   const [currentPage, setCurrentPage] = useState(1);
@@ -65,26 +71,7 @@ export const ItemTableContainer = ({ items }: ItemTableContainerProps) => {
     sortDirection: SortDirection;
   }>({ sortedColumn: undefined, sortDirection: 'ascending' });
 
-  const [favourites, setFavourites] = useState(new Set<number>());
-  useEffect(() => {
-    getStoredFavourites().then((favourites) => {
-      setFavourites(favourites);
-    });
-  }, []);
-
-  const toggleFavourite = (itemId: number) => {
-    const updatedFavourites = new Set(favourites);
-    if (updatedFavourites.has(itemId)) {
-      updatedFavourites.delete(itemId);
-    } else {
-      updatedFavourites.add(itemId);
-    }
-    setFavourites(updatedFavourites);
-    setStoredFavourites(updatedFavourites);
-  };
-
   const numberOfPages = Math.ceil(items.length / itemsPerPage);
-
   const startIndex = (currentPage - 1) * itemsPerPage;
 
   const tradedItems = items.filter((item) => {
