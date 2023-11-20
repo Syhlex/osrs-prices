@@ -76,7 +76,7 @@ export const ItemTableContainer = ({
     setFilterText(urlParams.get('search') ?? '');
   }, [location.search]);
 
-  const numberOfPages = Math.ceil(items.length / itemsPerPage);
+  const numberOfPages = Math.ceil(items.length / itemsPerPage) || 1;
   const startIndex = (currentPage - 1) * itemsPerPage;
 
   const tradedItems = items.filter((item) => {
