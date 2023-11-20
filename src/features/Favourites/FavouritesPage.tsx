@@ -27,6 +27,7 @@ export const FavouritesPage = ({
         items={items}
         favourites={favourites}
         toggleFavourite={toggleFavourite}
+        showSearchbar={false}
       />
     </div>
   );

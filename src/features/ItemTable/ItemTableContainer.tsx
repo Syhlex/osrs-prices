@@ -18,6 +18,7 @@ export interface ItemTableContainerProps {
   items: Item[];
   favourites: Set<number>;
   toggleFavourite: (itemId: number) => void;
+  showSearchbar?: boolean;
 }
 
 export type SortDirection = 'ascending' | 'descending';
@@ -62,6 +63,7 @@ export const ItemTableContainer = ({
   items,
   favourites,
   toggleFavourite,
+  showSearchbar = true,
 }: ItemTableContainerProps) => {
   const [filterText, setFilterText] = useState('');
   const [itemsPerPage, setItemsPerPage] = useState(50);
@@ -156,13 +158,15 @@ export const ItemTableContainer = ({
 
   return (
     <div className={styles.itemTableContainer}>
-      <FilterInput
-        placeholder={`Filter ${items.length} items...`}
-        value={filterText}
-        onChange={(value) => {
-          setFilterText(value);
-        }}
-      />
+      {showSearchbar && (
+        <FilterInput
+          placeholder={`Filter ${items.length} items...`}
+          value={filterText}
+          onChange={(value) => {
+            setFilterText(value);
+          }}
+        />
+      )}
       <Pagination
         currentPage={currentPage}
         totalPages={numberOfPages}
