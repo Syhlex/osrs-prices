@@ -7,12 +7,22 @@ import styles from './ItemPage.mod.scss';
 
 export interface ItemPageProps {
   item: Item;
+  isFavourite: boolean;
+  toggleFavourite: (itemId: number) => void;
 }
 
-export const ItemPage = ({ item }: ItemPageProps) => {
+export const ItemPage = ({
+  item,
+  isFavourite,
+  toggleFavourite,
+}: ItemPageProps) => {
   return (
     <div className={styles.itemPage}>
-      <ItemHeader item={item} />
+      <ItemHeader
+        item={item}
+        isFavourite={isFavourite}
+        toggleFavourite={toggleFavourite}
+      />
       <ItemDetailsContainer item={item} />
       <ItemChartsContainer item={item} />
     </div>

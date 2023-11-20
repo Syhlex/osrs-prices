@@ -1,14 +1,20 @@
 import React from 'react';
 import { Button, Icon, IconName } from 'components';
-import { getItemImageSource } from 'utils/itemImage.utils';
 import { Item } from 'context/Items/ItemsContext';
+import { getItemImageSource } from 'utils/itemImage.utils';
 import styles from './ItemHeader.mod.scss';
 
 export interface ItemHeaderProps {
   item: Item;
+  isFavourite: boolean;
+  toggleFavourite: (itemId: number) => void;
 }
 
-export const ItemHeader = ({ item }: ItemHeaderProps) => {
+export const ItemHeader = ({
+  item,
+  isFavourite,
+  toggleFavourite,
+}: ItemHeaderProps) => {
   const navigateToWiki = () => {
     window.open(
       `https://oldschool.runescape.wiki/w/Special:Lookup?type=item&id=${item.id}`,
@@ -42,7 +48,12 @@ export const ItemHeader = ({ item }: ItemHeaderProps) => {
         <Button variant="secondary" onClick={copyUrlToClipboard}>
           <Icon name={IconName.Copy} />
         </Button>
-        <Button variant="secondary">
+        <Button
+          variant={isFavourite ? 'favouriteOn' : 'secondary'}
+          onClick={() => {
+            toggleFavourite(item.id);
+          }}
+        >
           <Icon name={IconName.Heart} />
         </Button>
       </div>

@@ -1,34 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useTitle } from 'hooks/useTitle';
+import React from 'react';
+import { useFavourites } from 'hooks/useFavourites';
 import { useItems } from 'hooks/useItems';
-import {
-  getStoredFavourites,
-  setStoredFavourites,
-} from 'features/Favourites/favouritesManager';
+import { useTitle } from 'hooks/useTitle';
 import { ItemTableContainer } from 'features/ItemTable/ItemTableContainer';
 import styles from './AllItems.mod.scss';
 
 export const AllItems = () => {
   useTitle('All Items');
   const { items } = useItems();
-
-  const [favourites, setFavourites] = useState(new Set<number>());
-  useEffect(() => {
-    getStoredFavourites().then((favourites) => {
-      setFavourites(favourites);
-    });
-  }, []);
-
-  const toggleFavourite = (itemId: number) => {
-    const updatedFavourites = new Set(favourites);
-    if (updatedFavourites.has(itemId)) {
-      updatedFavourites.delete(itemId);
-    } else {
-      updatedFavourites.add(itemId);
-    }
-    setFavourites(updatedFavourites);
-    setStoredFavourites(updatedFavourites);
-  };
+  const { favourites, toggleFavourite } = useFavourites();
 
   return (
     <div className={styles.allItems}>

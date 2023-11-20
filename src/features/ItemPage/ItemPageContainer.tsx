@@ -1,7 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useTitle } from 'hooks/useTitle';
+import { useFavourites } from 'hooks/useFavourites';
 import { useItems } from 'hooks/useItems';
+import { useTitle } from 'hooks/useTitle';
 import { ItemPage } from './ItemPage';
 
 export const ItemPageContainer = () => {
@@ -15,5 +16,14 @@ export const ItemPageContainer = () => {
     return <div>Item with id {id} was not found.</div>;
   }
 
-  return <ItemPage item={item} />;
+  const { favourites, toggleFavourite } = useFavourites();
+  const isFavourite = favourites.has(parseInt(id));
+
+  return (
+    <ItemPage
+      item={item}
+      isFavourite={isFavourite}
+      toggleFavourite={toggleFavourite}
+    />
+  );
 };
