@@ -1,9 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Item } from 'context/Items/ItemsContext';
-import {
-  getStoredFavourites,
-  setStoredFavourites,
-} from 'features/Favourites/favouritesManager';
 import {
   sortAlphabetical,
   sortBoolean,
@@ -77,7 +73,11 @@ export const ItemTableContainer = ({
   const startIndex = (currentPage - 1) * itemsPerPage;
 
   const tradedItems = items.filter((item) => {
-    return item.high || item.low;
+    const hasFilterText = item.name
+      .toLowerCase()
+      .includes(filterText.toLowerCase());
+    const isTraded = item.high || item.low;
+    return hasFilterText && isTraded;
   });
 
   const sortedItems = sortedColumn
@@ -109,7 +109,7 @@ export const ItemTableContainer = ({
           throw Error('Sorting for this column type is not handled');
         }
       })
-    : items;
+    : tradedItems;
 
   const sortedItemsWithDirection =
     sortDirection === 'descending' ? sortedItems.reverse() : sortedItems;
