@@ -76,9 +76,6 @@ export const ItemTableContainer = ({
     setFilterText(urlParams.get('search') ?? '');
   }, [location.search]);
 
-  const numberOfPages = Math.ceil(items.length / itemsPerPage) || 1;
-  const startIndex = (currentPage - 1) * itemsPerPage;
-
   const tradedItems = items.filter((item) => {
     const hasFilterText = item.name
       .toLowerCase()
@@ -120,6 +117,9 @@ export const ItemTableContainer = ({
 
   const sortedItemsWithDirection =
     sortDirection === 'descending' ? sortedItems.reverse() : sortedItems;
+
+  const numberOfPages = Math.ceil(sortedItems.length / itemsPerPage) || 1;
+  const startIndex = (currentPage - 1) * itemsPerPage;
 
   const itemsToRender = sortedItemsWithDirection.slice(
     startIndex,
