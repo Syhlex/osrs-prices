@@ -12,18 +12,16 @@ export const ItemPageContainer = () => {
 
   useTitle(item?.name ?? '');
 
-  if (!item) {
-    return <div>Item with id {id} was not found.</div>;
-  }
-
   const { favourites, toggleFavourite } = useFavourites();
   const isFavourite = favourites.has(parseInt(id));
 
-  return (
+  return item ? (
     <ItemPage
       item={item}
       isFavourite={isFavourite}
       toggleFavourite={toggleFavourite}
     />
+  ) : (
+    <div>Item with id {id} was not found.</div>
   );
 };
