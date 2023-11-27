@@ -14,6 +14,9 @@ const defaultGridOptions: GridOptions = {
   // This property causes all rows to be rendered in the DOM, even with pagination. https://www.ag-grid.com/javascript-data-grid/grid-size/#grid-auto-height
   // However, autoheight is a design requirement. Thus, we cannot use ag-grid and will opt for a native table implementation.
   domLayout: 'autoHeight',
+  defaultColDef: {
+    suppressMovable: true,
+  },
 };
 
 export const Table = ({ classes, ...agGridReactProps }: TableProps) => {
