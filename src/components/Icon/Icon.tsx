@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import Bars from 'assets/icons/bars.svg';
 import CaretDown from 'assets/icons/caret-down.svg';
 import CopyIcon from 'assets/icons/copy.svg';
 import HeartIcon from 'assets/icons/heart.svg';
@@ -12,6 +13,7 @@ import SortUpIcon from 'assets/icons/sort-up.svg';
 import styles from './Icon.mod.scss';
 
 export enum IconName {
+  Bars = 'Bars',
   CaretDown = 'CaretDown',
   Copy = 'Copy',
   Heart = 'Heart',
@@ -27,6 +29,7 @@ export interface IconProps {
 }
 
 const iconsMap = {
+  [IconName.Bars]: Bars,
   [IconName.CaretDown]: CaretDown,
   [IconName.Copy]: CopyIcon,
   [IconName.Heart]: HeartIcon,
