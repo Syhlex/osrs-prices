@@ -5,6 +5,7 @@ declare namespace ItemTableModScssNamespace {
     imageCell: string;
     itemTable: string;
     negative: string;
+    overflowWrapper: string;
     positive: string;
     sortIcon: string;
   }

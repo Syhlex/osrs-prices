@@ -110,36 +110,38 @@ export const ItemTable = ({
   );
 
   return (
-    <table className={styles.itemTable}>
-      <thead>
-        <tr>
-          {/* item image */}
-          <th />
-          {tableColumns.map((column) => (
-            <th
-              className={styles.header}
-              onClick={() => {
-                updateColumnSort(column.value);
-              }}
-            >
-              {column.label}
-              {sortedColumn === column.value && (
-                <Icon
-                  name={
-                    sortDirection === 'ascending'
-                      ? IconName.SortUp
-                      : IconName.SortDown
-                  }
-                  className={styles.sortIcon}
-                />
-              )}
-            </th>
-          ))}
-          {/* favourite */}
-          <th />
-        </tr>
-      </thead>
-      <tbody>{tableRows}</tbody>
-    </table>
+    <div className={styles.overflowWrapper}>
+      <table className={styles.itemTable}>
+        <thead>
+          <tr>
+            {/* item image */}
+            <th />
+            {tableColumns.map((column) => (
+              <th
+                className={styles.header}
+                onClick={() => {
+                  updateColumnSort(column.value);
+                }}
+              >
+                {column.label}
+                {sortedColumn === column.value && (
+                  <Icon
+                    name={
+                      sortDirection === 'ascending'
+                        ? IconName.SortUp
+                        : IconName.SortDown
+                    }
+                    className={styles.sortIcon}
+                  />
+                )}
+              </th>
+            ))}
+            {/* favourite */}
+            <th />
+          </tr>
+        </thead>
+        <tbody>{tableRows}</tbody>
+      </table>
+    </div>
   );
 };
