@@ -73,7 +73,9 @@ export const ItemTable = ({
             <td>
               <Link to={`/item/${item.id}`}>{item.name}</Link>
             </td>
-            <td>{buyLimit}</td>
+            <td className={isNaN(parseInt(buyLimit)) ? styles.grey : undefined}>
+              {buyLimit}
+            </td>
             <td className={styles.imageCell}>
               <img
                 src={item.members ? membersImg : freeToPlayImg}
