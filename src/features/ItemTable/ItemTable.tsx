@@ -74,7 +74,7 @@ export const ItemTable = ({
               <Link to={`/item/${item.id}`}>{item.name}</Link>
             </td>
             <td>{buyLimit}</td>
-            <td>
+            <td className={styles.imageCell}>
               <img
                 src={item.members ? membersImg : freeToPlayImg}
                 alt={item.members ? 'Members-only' : 'Free-to-play'}
