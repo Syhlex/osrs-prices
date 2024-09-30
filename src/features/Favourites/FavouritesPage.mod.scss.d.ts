@@ -2,6 +2,7 @@ declare namespace FavouritesPageModScssNamespace {
   export interface IFavouritesPageModScss {
     favouritesPage: string;
     header: string;
+    noFavouritesText: string;
   }
 }
 

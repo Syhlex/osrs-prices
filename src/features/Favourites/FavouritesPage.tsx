@@ -23,12 +23,18 @@ export const FavouritesPage = ({
         then pressing the star icon. We store your favourites in your browser's
         storage, so this won't persist between devices.
       </p>
-      <ItemTableContainer
-        items={items}
-        favourites={favourites}
-        toggleFavourite={toggleFavourite}
-        showSearchbar={false}
-      />
+      {favourites.size > 0 ? (
+        <ItemTableContainer
+          items={items}
+          favourites={favourites}
+          toggleFavourite={toggleFavourite}
+          showSearchbar={false}
+        />
+      ) : (
+        <p className={styles.noFavouritesText}>
+          You have not added any favourites yet.
+        </p>
+      )}
     </div>
   );
 };
