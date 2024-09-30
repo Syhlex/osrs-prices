@@ -70,7 +70,10 @@ export const ItemTableContainer = ({
   showSearchbar = true,
 }: ItemTableContainerProps) => {
   const [filterText, setFilterText] = useState('');
-  const [itemsPerPage, setItemsPerPage] = useState(50);
+  const localStorageItemsPerPage = localStorage.getItem('itemsPerPage');
+  const [itemsPerPage, setItemsPerPage] = useState(
+    localStorageItemsPerPage ? parseInt(localStorageItemsPerPage) : 50,
+  );
   const [currentPage, setCurrentPage] = useState(1);
   const [{ sortedColumn, sortDirection }, setColumnSort] = useState<{
     sortedColumn: keyof ItemValues | undefined;
@@ -188,6 +191,7 @@ export const ItemTableContainer = ({
         goToPreviousPage={goToPreviousPage}
         goToNextPage={goToNextPage}
         goToLastPage={goToLastPage}
+        itemsPerPage={itemsPerPage}
         setItemsPerPage={updateItemsPerPage}
       />
       <ItemTable
@@ -201,6 +205,7 @@ export const ItemTableContainer = ({
       <Pagination
         currentPage={currentPage}
         totalPages={numberOfPages}
+        itemsPerPage={itemsPerPage}
         goToFirstPage={goToFirstPage}
         goToPreviousPage={goToPreviousPage}
         goToNextPage={goToNextPage}

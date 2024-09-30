@@ -8,9 +8,17 @@ const options: DropdownOption<number>[] = [
   { label: 'Show 250', value: 250 },
 ];
 
+const getLabel = (value: number) =>
+  ({
+    50: 'Show 50',
+    100: 'Show 100',
+    250: 'Show 250',
+  }[value]);
+
 export interface PaginationProps {
   currentPage: number;
   totalPages: number;
+  itemsPerPage: number;
   goToFirstPage: () => void;
   goToPreviousPage: () => void;
   goToNextPage: () => void;
@@ -21,6 +29,7 @@ export interface PaginationProps {
 export const Pagination = ({
   currentPage,
   totalPages,
+  itemsPerPage,
   goToFirstPage,
   goToPreviousPage,
   goToNextPage,
@@ -70,8 +79,10 @@ export const Pagination = ({
       <Select
         buttonVariant="primary"
         options={options}
+        label={getLabel(itemsPerPage)}
         onSelect={(selectedOption) => {
           setItemsPerPage(selectedOption.value);
+          localStorage.setItem('itemsPerPage', selectedOption.value.toString());
         }}
       />
     </div>

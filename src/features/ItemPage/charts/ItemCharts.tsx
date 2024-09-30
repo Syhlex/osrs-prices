@@ -6,6 +6,7 @@ import { TimePeriodInDays } from './ItemChartsContainer';
 import styles from './ItemCharts.mod.scss';
 
 export interface ItemChartsProps {
+  timePeriod: TimePeriodInDays;
   onTimePeriodSelect: (timePeriod: TimePeriodInDays) => void;
   priceData: {
     lowTimes: number[];
@@ -21,13 +22,14 @@ export interface ItemChartsProps {
 }
 
 export const ItemCharts = ({
+  timePeriod,
   onTimePeriodSelect,
   priceData,
   volumeData,
 }: ItemChartsProps) => {
   return (
     <div className={styles.itemCharts}>
-      <TimePeriodSelect onSelect={onTimePeriodSelect} />
+      <TimePeriodSelect timePeriod={timePeriod} onSelect={onTimePeriodSelect} />
       <PriceChart
         lowTimes={priceData.lowTimes}
         lowPrices={priceData.lowPrices}

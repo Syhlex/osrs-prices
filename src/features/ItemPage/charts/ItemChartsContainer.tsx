@@ -41,7 +41,7 @@ export const ItemChartsContainer = ({ item }: ItemChartsContainerProps) => {
   }, [item.id, timePeriod]);
 
   const onTimePeriodSelect = useCallback(
-    (timePeriod) => {
+    (timePeriod: TimePeriodInDays) => {
       setTimePeriod(timePeriod);
     },
     [setTimePeriod],
@@ -105,6 +105,7 @@ export const ItemChartsContainer = ({ item }: ItemChartsContainerProps) => {
 
   return (
     <ItemCharts
+      timePeriod={timePeriod}
       onTimePeriodSelect={onTimePeriodSelect}
       priceData={priceData}
       volumeData={volumeData}
