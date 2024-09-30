@@ -36,15 +36,25 @@ export interface GetVolumesResponse {
   };
 }
 
-export interface TimeSeriesPoint {
-  timestamp: number; // in seconds
+export interface AveragePriceAndVolume {
   avgHighPrice: number | null;
   avgLowPrice: number | null;
   highPriceVolume: number;
   lowPriceVolume: number;
 }
 
+export interface TimeSeriesPoint extends AveragePriceAndVolume {
+  timestamp: number; // in seconds
+}
+
 export interface GetTimeSeriesResponse {
   data: TimeSeriesPoint[];
   itemId: number;
+}
+
+export interface Get1HrAveragePricesResponse {
+  timestamp: number;
+  data: {
+    [id: number]: AveragePriceAndVolume;
+  };
 }

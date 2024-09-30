@@ -71,6 +71,16 @@ export const getItemDetails = (item: Item) => {
   const lowAlch =
     typeof item.lowalch === 'number' ? addCommas(item.lowalch) : 'Unknown';
 
+  const dayChange =
+    item.high && item.yesterdayData?.avgHighPrice
+      ? (item.high - item.yesterdayData.avgHighPrice) /
+        item.yesterdayData.avgHighPrice
+      : undefined;
+  const dayChangeText =
+    typeof dayChange === 'number'
+      ? `${dayChange >= 0 ? '+' : ''}${(dayChange * 100).toFixed(2)}%`
+      : 'Unknown';
+
   return {
     buyPrice,
     buyPriceText,
@@ -87,5 +97,7 @@ export const getItemDetails = (item: Item) => {
     highAlchProfit,
     highAlch,
     lowAlch,
+    dayChange,
+    dayChangeText,
   };
 };

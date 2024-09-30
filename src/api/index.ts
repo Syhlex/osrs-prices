@@ -1,4 +1,5 @@
 import {
+  Get1HrAveragePricesResponse,
   GetItemDetailsResponse,
   GetLatestPricesResponse,
   GetTimeSeriesResponse,
@@ -35,4 +36,12 @@ export const getTimeSeries = (
 
 export const getVolumes = (): Promise<GetVolumesResponse> => {
   return fetch(`${BASE_URL}/volumes`).then((response) => response.json());
+};
+
+export const get1HrAveragePrices = (
+  timestamp?: number,
+): Promise<Get1HrAveragePricesResponse> => {
+  return fetch(
+    `${BASE_URL}/1h${timestamp ? `?timestamp=${timestamp}` : ''}`,
+  ).then((response) => response.json());
 };

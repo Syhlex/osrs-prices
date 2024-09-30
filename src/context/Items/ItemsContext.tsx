@@ -1,5 +1,7 @@
 import { createContext } from 'react';
 import {
+  AveragePriceAndVolume,
+  Get1HrAveragePricesResponse,
   GetItemDetailsResponse,
   GetLatestPricesResponse,
   GetVolumesResponse,
@@ -11,13 +13,18 @@ export interface ApiValues {
   itemDetails?: GetItemDetailsResponse;
   volumes?: GetVolumesResponse;
   latestPrices?: GetLatestPricesResponse;
+  yesterdayData?: Get1HrAveragePricesResponse;
 }
 
 export interface ItemsApi {
   refreshData: () => Promise<void>;
 }
 
-export type Item = ItemDetails & Partial<PriceInfo> & { volume?: number };
+export type Item = ItemDetails &
+  Partial<PriceInfo> & {
+    volume?: number;
+    yesterdayData?: AveragePriceAndVolume;
+  };
 
 export type ItemsMap = { [id: string]: Item };
 
@@ -33,6 +40,7 @@ export const ItemsContext = createContext<ItemsContextValues>({
     itemDetails: undefined,
     volumes: undefined,
     latestPrices: undefined,
+    yesterdayData: undefined,
   },
   api: undefined,
   items: [],

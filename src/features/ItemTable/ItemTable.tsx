@@ -22,6 +22,7 @@ const tableColumns: { label: string; value: keyof ItemValues }[] = [
   { label: 'Name', value: 'name' },
   { label: 'Buy limit', value: 'buyLimit' },
   { label: 'Members', value: 'members' },
+  { label: 'Day change', value: 'dayChange' },
   { label: 'Buy price', value: 'buyPrice' },
   { label: 'Most recent buy', value: 'lastBuyTime' },
   { label: 'Sell price', value: 'sellPrice' },
@@ -45,6 +46,8 @@ export const ItemTable = ({
       items.map((item) => {
         const {
           buyLimit,
+          dayChange,
+          dayChangeText,
           buyPrice,
           lastBuyTrade,
           sellPrice,
@@ -76,6 +79,9 @@ export const ItemTable = ({
                 src={item.members ? membersImg : freeToPlayImg}
                 alt={item.members ? 'Members-only' : 'Free-to-play'}
               />
+            </td>
+            <td className={dayChange ? getNumberClass(dayChange) : styles.grey}>
+              {dayChangeText}
             </td>
             <td>{buyPrice}</td>
             <td className={styles.grey}>{lastBuyTrade}</td>

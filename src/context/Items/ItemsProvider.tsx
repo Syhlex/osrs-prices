@@ -5,7 +5,12 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { getItemDetails, getLatestPrices, getVolumes } from 'api';
+import {
+  get1HrAveragePrices,
+  getItemDetails,
+  getLatestPrices,
+  getVolumes,
+} from 'api';
 import { ApiValues, Item, ItemsContext, ItemsMap } from './ItemsContext';
 
 export interface ItemsProviderProps {
@@ -17,18 +22,24 @@ export const ItemsProvider = ({ children }: ItemsProviderProps) => {
     itemDetails: undefined,
     volumes: undefined,
     latestPrices: undefined,
+    yesterdayData: undefined,
   });
 
   const fetchData = useCallback(async () => {
-    const [itemDetails, volumes, latestPrices] = await Promise.all([
-      getItemDetails(),
-      getVolumes(),
-      getLatestPrices(),
-    ]);
+    const _yesterdayTimestamp = Math.floor(Date.now() / 1000) - 24 * 60 * 60; // timestamp 24 hours ago
+    const yesterdayTimestamp = Math.floor(_yesterdayTimestamp / 3600) * 3600; // timestamp must be divisible by 3600 to align to the start of an hour
+    const [itemDetails, volumes, latestPrices, yesterdayData] =
+      await Promise.all([
+        getItemDetails(),
+        getVolumes(),
+        getLatestPrices(),
+        get1HrAveragePrices(yesterdayTimestamp),
+      ]);
     setRawData(() => ({
       itemDetails,
       volumes,
       latestPrices,
+      yesterdayData,
     }));
   }, []);
 
@@ -45,7 +56,8 @@ export const ItemsProvider = ({ children }: ItemsProviderProps) => {
     return rawData.itemDetails.map((item) => {
       const prices = rawData.latestPrices?.data[item.id];
       const volume = rawData.volumes?.data[item.id];
-      return { ...item, ...prices, volume };
+      const yesterdayData = rawData.yesterdayData?.data[item.id];
+      return { ...item, ...prices, volume, yesterdayData };
     });
   }, [rawData]);
 
@@ -61,11 +73,7 @@ export const ItemsProvider = ({ children }: ItemsProviderProps) => {
   return (
     <ItemsContext.Provider
       value={{
-        raw: {
-          itemDetails: rawData.itemDetails,
-          volumes: rawData.volumes,
-          latestPrices: rawData.latestPrices,
-        },
+        raw: rawData,
         api: {
           refreshData: fetchData,
         },

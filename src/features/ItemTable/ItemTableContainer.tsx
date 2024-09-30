@@ -24,6 +24,7 @@ export interface ItemValues {
   name: string;
   buyLimit: number | undefined;
   members: boolean;
+  dayChange: number | undefined;
   buyPrice: number | undefined;
   lastBuyTime: number | undefined;
   sellPrice: number | undefined;
@@ -37,10 +38,16 @@ export interface ItemValues {
 // Consider memoizing this function?
 const getItemValues = (item: Item): ItemValues => {
   const margin = item.high && item.low ? item.high - item.low : undefined;
+  const dayChange =
+    item.high && item.yesterdayData?.avgHighPrice
+      ? (item.high - item.yesterdayData.avgHighPrice) /
+        item.yesterdayData.avgHighPrice
+      : undefined;
   return {
     name: item.name,
     buyLimit: item.limit,
     members: item.members,
+    dayChange,
     buyPrice: item.high,
     lastBuyTime: item.highTime,
     sellPrice: item.low,
