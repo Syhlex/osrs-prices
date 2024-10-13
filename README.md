@@ -1,4 +1,4 @@
-# OSRS Prices Clone
+# [OSRS Prices Clone](osrs-prices-clone.netlify.app/)
 
 ![Webpack Build](https://github.com/ianzh4ng/osrs-prices/actions/workflows/webpack-build.yml/badge.svg)
 
