@@ -2,7 +2,7 @@
 
 ![Webpack Build](https://github.com/ianzh4ng/osrs-prices/actions/workflows/webpack-build.yml/badge.svg)
 
-A high-fidelity replica of [OSRS Prices](https://prices.runescape.wiki/osrs/), with a couple of improvements:
+A high-fidelity replica of https://prices.runescape.wiki/osrs/, with a couple of improvements:
 
 - Adds a Daily Change column
 - Persists the number of items shown per page
